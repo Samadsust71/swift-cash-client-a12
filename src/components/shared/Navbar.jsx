@@ -32,7 +32,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-1">
-            <img src={logo} alt="logo" className="h-12 w-12 object-cover" />
+            <img src={logo} alt="logo" className="h-10 w-10 object-cover" />
             <h1 className="uppercase text-2xl font-bold hidden md:block">
               <span className="text-brand-primary">swift</span>cash
             </h1>
