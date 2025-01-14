@@ -6,4 +6,6 @@
 
 body{
     font-family: "Poppins", serif;
+    background-color: #171827;
+    overflow-y: scroll;
 }

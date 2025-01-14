@@ -46,6 +46,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.8 }}
+            onClick={()=>navigate("/login")}
             className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-[#2F3043] data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
           >
             <FaUser />
@@ -55,6 +56,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.8 }}
             animate={{ transition: { ease: "easeInOut" } }}
+            onClick={()=>navigate("/register")}
             className="inline-flex items-center gap-2 rounded-md bg-brand-primary py-1.5 px-3 text-sm/6 font-semibold text-gray-900 shadow-inner shadow-white/10 focus:outline-none data-[hover]:brand-primary data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
           >
             <IoKey />
