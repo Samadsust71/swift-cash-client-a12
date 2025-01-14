@@ -4,6 +4,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { imageUpload } from "../../api/utils";
+import axios from "axios";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,30 +15,42 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
- 
-  const navigate = useNavigate()
-  const {createUser,updateUser, setUser,loading, setLoading} = useAuth()
- 
+
+  const navigate = useNavigate();
+  const { createUser, updateUser, setUser, loading, setLoading } = useAuth();
 
   // Handle form submission
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+    const { name, email, photo, password, role } = data;
 
-    const {name,email,photo,password} = data
+    const image = photo[0];
 
-    createUser(email,password)
-    .then(result=>{
-        const user = result?.user
-        updateUser(name,photo)
+    const photoUrl = await imageUpload(image);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result?.user;
+        updateUser(name, photoUrl);
         setUser(user);
+        const users = {
+          name,
+          email,
+          photo: photoUrl,
+          role: role,
+          coins: role === "Buyer" ? 50 : 10,
+          timestamp: new Date().getTime(),
+        };
+        axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
+
         toast.success("Registration Succesfull!!!");
         navigate("/");
-        setLoading(false)
-  })
-    .catch(error=>{
-        toast.error(error.message || "Something went wrong")
-        setLoading(false)
-    })
-    
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error("Email already in use");
+        setLoading(false);
+        console.log(error.message);
+      });
   };
 
   const togglePasswordVisibility = () => {
@@ -90,39 +104,39 @@ const Register = () => {
           </div>
           <div className="grid grid-cols-2 gap-2">
             {/* Photo field */}
-          <div>
-            <label className="block text-sm mb-1">Upload Photo</label>
-            <div className="relative">
-              <input
-                type="file"
-                {...register("photo", { required: "Photo is required" })}
-                className="file-input file-input-bordered w-full"
-              />
-              {errors.photo && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.photo.message}
-                </p>
-              )}
-            </div>
-          </div>
-          {/* Role Field */}
-          <div>
-            <label className="block text-sm mb-1">Role</label>
-            <div className="relative">
-              <select 
-              {...register("role", { required: "Role is required" })}
-              className="select select-bordered w-full">
-                <option>Worker</option>
-                <option>Buyer</option>
-              </select>
-              {errors.role && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.role.message}
+            <div>
+              <label className="block text-sm mb-1">Upload Photo</label>
+              <div className="relative">
+                <input
+                  type="file"
+                  {...register("photo", { required: "Photo is required" })}
+                  className="file-input file-input-bordered w-full"
+                />
+                {errors.photo && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.photo.message}
                   </p>
-              )}
+                )}
+              </div>
             </div>
-          </div>
-
+            {/* Role Field */}
+            <div>
+              <label className="block text-sm mb-1">Role</label>
+              <div className="relative">
+                <select
+                  {...register("role", { required: "Role is required" })}
+                  className="select select-bordered w-full"
+                >
+                  <option value="Worker">Worker</option>
+                  <option value="Buyer">Buyer</option>
+                </select>
+                {errors.role && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.role.message}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
           {/* Password Field */}
           <div>
@@ -130,7 +144,6 @@ const Register = () => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
-                
                 placeholder="Enter your password"
                 {...register("password", {
                   required: "Password is required",
@@ -157,17 +170,20 @@ const Register = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn bg-brand-primary hover:bg-brand-primary/85 w-full mt-2 text-black">
-          {loading?"Signing Up...":"Sign Up"}
+          <button
+            type="submit"
+            className="btn bg-brand-primary hover:bg-brand-primary/85 w-full mt-2 text-black"
+          >
+            {loading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 
         <p className="text-center mt-6">
-            Don&apos;t have an account?{" "}
-            <Link to={"/login"} className="text-brand-primary">
-              Sign In
-            </Link>
-          </p>
+          Don&apos;t have an account?{" "}
+          <Link to={"/login"} className="text-brand-primary">
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
   );

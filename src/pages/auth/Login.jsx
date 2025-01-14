@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser, setLoading, loading } = useAuth();
+  const { signInUser, setLoading, loading ,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -33,13 +33,24 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  const handleGoogleSignIn = ()=>{
+    signInWithGoogle()
+    .then(() => {
+      setLoading(false)
+      toast.success("Login Successfull !!!")
+      navigate( "/");
+    })
+    .catch((err) => {
+      setLoading(false)
+      toast.error(err.message)
+    });
+}
   return (
     <div className="min-h-screen flex items-center justify-center  text-text-light">
       <div className="bg-surface p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
-        <button className="btn btn-outline w-full flex items-center justify-center gap-2 mb-4">
+        <button onClick={handleGoogleSignIn} disabled={loading} className="btn btn-outline w-full flex items-center justify-center gap-2 mb-4">
           <FaGoogle className="text-lg" />
           Sign In with Google
         </button>
