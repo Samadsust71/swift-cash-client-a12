@@ -1,8 +1,43 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+ 
+  const navigate = useNavigate()
+  const {createUser,updateUser, setUser,loading, setLoading} = useAuth()
+ 
+
+  // Handle form submission
+  const onSubmit = (data) => {
+
+    const {name,email,photo,password} = data
+
+    createUser(email,password)
+    .then(result=>{
+        const user = result?.user
+        updateUser(name,photo)
+        setUser(user);
+        toast.success("Registration Succesfull!!!");
+        navigate("/");
+        setLoading(false)
+  })
+    .catch(error=>{
+        toast.error(error.message || "Something went wrong")
+        setLoading(false)
+    })
+    
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -18,16 +53,22 @@ const Register = () => {
           <p>Sign up now and receive $2.00 as a sign up bonus! 💸</p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name Field */}
           <div>
-            <label className="block text-sm mb-1">Email</label>
+            <label className="block text-sm mb-1">Name</label>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Enter your email"
+                {...register("name", { required: "Name is required" })}
+                placeholder="Enter your name"
                 className="input input-bordered w-full bg-surface text-text-light"
               />
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
+              )}
             </div>
           </div>
           {/* Email Field */}
@@ -36,9 +77,15 @@ const Register = () => {
             <div className="relative">
               <input
                 type="email"
+                {...register("email", { required: "Email is required" })}
                 placeholder="Enter your email"
                 className="input input-bordered w-full bg-surface text-text-light"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -48,18 +95,31 @@ const Register = () => {
             <div className="relative">
               <input
                 type="file"
+                {...register("photo", { required: "Photo is required" })}
                 className="file-input file-input-bordered w-full"
               />
+              {errors.photo && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.photo.message}
+                </p>
+              )}
             </div>
           </div>
           {/* Role Field */}
           <div>
             <label className="block text-sm mb-1">Role</label>
             <div className="relative">
-              <select className="select select-bordered w-full">
+              <select 
+              {...register("role", { required: "Role is required" })}
+              className="select select-bordered w-full">
                 <option>Worker</option>
                 <option>Buyer</option>
               </select>
+              {errors.role && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.role.message}
+                  </p>
+              )}
             </div>
           </div>
 
@@ -70,7 +130,16 @@ const Register = () => {
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
+                
                 placeholder="Enter your password"
+                {...register("password", {
+                  required: "Password is required",
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/,
+                    message:
+                      "Password must contain at least one uppercase letter, one lowercase letter, and be at least 6 characters long",
+                  },
+                })}
                 className="input input-bordered w-full bg-surface text-text-light pr-10"
               />
               <button
@@ -80,13 +149,25 @@ const Register = () => {
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
           </div>
 
           <button type="submit" className="btn bg-brand-primary hover:bg-brand-primary/85 w-full mt-2 text-black">
-            Sign Up
+          {loading?"Signing Up...":"Sign Up"}
           </button>
         </form>
+
+        <p className="text-center mt-6">
+            Don&apos;t have an account?{" "}
+            <Link to={"/login"} className="text-brand-primary">
+              Sign In
+            </Link>
+          </p>
       </div>
     </div>
   );
