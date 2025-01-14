@@ -3,13 +3,15 @@ import { IoKey } from "react-icons/io5";
 import { RiMenu2Fill } from "react-icons/ri";
 import logo from "../../assets/logo-3.png";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
+    const navigate = useNavigate()
   const links = (
     <>
       <li>
-        <a href="https://github.com/Samadsust71" target="_blank">
+        <a href="https://github.com/Samadsust71" className="hover:text-brand-primary  active:bg-surface active:text-brand-primary" target="_blank">
           Join as Developer
         </a>
       </li>
@@ -17,8 +19,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-bg-main">
-      <div className="navbar  w-11/12 mx-auto text-text-light">
+    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] z-20">
+      <div className="navbar p-0 w-11/12 mx-auto text-text-light">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,7 +33,7 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <div className="flex items-center gap-1">
+          <div onClick={()=>navigate("/")} className="flex items-center cursor-pointer">
             <img src={logo} alt="logo" className="h-10 w-10 object-cover" />
             <h1 className="uppercase text-2xl font-bold hidden md:block">
               <span className="text-brand-primary">swift</span>cash
@@ -40,7 +42,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end flex items-center gap-4">
-          <ul className="menu menu-horizontal px-1 hidden lg:flex">{links}</ul>
+          <ul className="px-1 hidden lg:flex">{links}</ul>
           <motion.button
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.8 }}
