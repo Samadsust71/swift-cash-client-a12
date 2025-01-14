@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -35,8 +36,18 @@ const Login = () => {
   };
   const handleGoogleSignIn = ()=>{
     signInWithGoogle()
-    .then(() => {
+    .then((res) => {
       setLoading(false)
+      const user = res?.user
+      const users = {
+        name: user?.displayName || "",
+        email: user?.email || "",
+        photo: user?.photoURL || "",
+        role: "Worker",
+        coins: 10,
+        timestamp: new Date().getTime(),
+      };
+      axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
       toast.success("Login Successfull !!!")
       navigate( "/");
     })
