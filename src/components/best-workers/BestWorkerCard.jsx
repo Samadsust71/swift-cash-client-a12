@@ -1,5 +1,7 @@
 
 
+import PropTypes from 'prop-types';
+
 const BestWorkerCard = ({ worker }) => {
   const {photo, coins} = worker || {}
   return (
@@ -27,6 +29,14 @@ const BestWorkerCard = ({ worker }) => {
       </div>
     </div>
   );
+}
+BestWorkerCard.propTypes = {
+  worker: PropTypes.shape({
+    photo: PropTypes.string,
+    coins: PropTypes.number,
+  }).isRequired,
 };
 
 export default BestWorkerCard;
+
+

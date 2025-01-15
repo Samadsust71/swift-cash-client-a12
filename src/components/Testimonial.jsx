@@ -51,7 +51,7 @@ const Testimonial = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-center bg-bg-main p-8 rounded-lg shadow-lg">
       <div className="flex-1 flex justify-center items-center relative">
-        <div className="w-48 h-48 rounded-lg overflow-hidden">
+        <div className="w-[100%] h-80 rounded-lg overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.img
               key={testimonials[currentIndex].image}
@@ -81,8 +81,8 @@ const Testimonial = () => {
               {testimonials[currentIndex].feedback}
             </p>
             <div className="flex items-center space-x-2">
-              <span className="text-yellow-400">
-                {"⭐".repeat(testimonials[currentIndex].rating)}
+              <span className="text-brand-primary">
+                {"★".repeat(testimonials[currentIndex].rating)}
               </span>
             </div>
             <h4 className="text-brand-primary font-bold mt-2">
