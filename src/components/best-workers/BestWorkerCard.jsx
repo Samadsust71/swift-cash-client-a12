@@ -1,6 +1,7 @@
 
 
 import PropTypes from 'prop-types';
+import coin from "../../assets/coin.gif"
 
 const BestWorkerCard = ({ worker }) => {
   const {photo, coins} = worker || {}
@@ -20,7 +21,7 @@ const BestWorkerCard = ({ worker }) => {
         {/* Coin Data */}
         <div className="absolute bottom-4 left-4 bg-black/70 px-4 py-2 rounded-lg text-white flex items-center space-x-2">
           <img
-            src="https://cdn-icons-png.flaticon.com/512/1183/1183672.png"
+            src={coin}
             alt="Coin Icon"
             className="w-6 h-6"
           />

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
+import faqAnimationData from "../../assets/lottie/faq-lottie.json"
 
 const faqs = [
   {
@@ -34,7 +36,8 @@ const FAQSection = () => {
         Frequently Asked Questions
       </h2>
 
-      <div className="max-w-3xl mx-auto space-y-4">
+      <div className="flex flex-col-reverse lg:flex-row gap-10 items-center">
+      <div className="w-full lg:w-[50%] mx-auto space-y-4">
         {faqs.map((faq, index) => (
           <div key={index} className="bg-bg-main rounded-lg">
             <button
@@ -54,13 +57,17 @@ const FAQSection = () => {
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                className="p-4 text-white/80 border-t border-gray-800"
+                className="p-4 text-white/80 border-t border-brand-primary/20"
               >
                 {faq.answer}
               </motion.div>
             )}
           </div>
         ))}
+      </div>
+      <div>
+        <Lottie animationData={faqAnimationData}/>
+      </div>
       </div>
     </div>
   );

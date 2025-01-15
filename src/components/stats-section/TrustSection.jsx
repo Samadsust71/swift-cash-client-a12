@@ -32,12 +32,8 @@ const TrustSection = () => {
 
       {/* Right Section */}
       <div className="flex-1 relative">
-        <video
-          className="w-full h-full object-cover rounded-lg"
-          src="https://drive.google.com/file/d/1WHTLKnhrRMntz_T6QvQ1BoG1zVlIJZhM/view"
-          controls
-          poster="/path-to-poster-image.jpg"
-        />
+        <img className="w-full h-full object-cover rounded-lg"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT5GgRclb79Khei1TqnaWs5Txph5bD4AWOAab9sDyBV3oTdeYOxguF_e2H3mEZ7b92o2U&usqp=CAU"alt="" />
       </div>
     </div>
   );
