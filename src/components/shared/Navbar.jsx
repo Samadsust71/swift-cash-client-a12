@@ -1,12 +1,13 @@
-import { FaUser } from "react-icons/fa";
+import {  FaUser } from "react-icons/fa";
 import { IoKey } from "react-icons/io5";
-import { RiCoinsFill, RiMenu2Fill } from "react-icons/ri";
+import {  RiMenu2Fill } from "react-icons/ri";
 import logo from "../../assets/logo-3.png";
 import { motion } from "framer-motion";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import userIcon from "../../assets/userIcon.jpg";
+import coinIcon from "../../assets/logo1.webp"
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -47,16 +48,41 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      {user && (
+        <li>
+          <div className="flex items-center bg-[#2F3043] rounded-md pr-3 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none gap-1">
+          <img
+              src={coinIcon}
+              className="h-7 w-7  object-cover"
+              alt="user"
+            />
+
+            <div className="">100</div>
+          </div>
+        </li>
+      )}
+      {user && (
+        <li>
+          <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none ">
+            <img
+              src={user.photoURL || userIcon}
+              className="h-7 w-7 rounded-full object-cover"
+              alt="user"
+            />
+            <p>{user?.displayName.slice(0, 6) || "user"}</p>
+          </div>
+        </li>
+      )}
     </>
   );
 
   return (
     <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] z-20">
-      <div className="navbar p-0 w-11/12 mx-auto text-text-light">
+      <div className="navbar p-0 container mx-auto text-text-light">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <RiMenu2Fill />
+            <div tabIndex={0} role="button" className="lg:hidden">
+              <RiMenu2Fill className="text-lg" />
             </div>
             <ul
               tabIndex={0}
@@ -76,27 +102,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="navbar-end flex items-center gap-4">
-          <ul className="px-1 hidden lg:flex gap-2">{links}</ul>
-          {user && (
-            <div className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow-lg">
-            <div className="p-2 bg-white rounded-full flex items-center justify-center">
-              
-              <RiCoinsFill className="text-green-600 text-lg" />
-            </div>
-            <span className="text-lg font-semibold">10</span>
-          </div>
-          )}
-          {user && (
-            <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-[#2F3043] data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-              <img
-                src={user.photoURL || userIcon}
-                className="h-10 w-10 rounded-full object-cover"
-                alt="user"
-              />
-              <p>{user?.displayName || "user"}</p>
-            </div>
-          )}
+        <div className="navbar-end w-[75%] flex items-center gap-4">
+          <ul className="px-1 hidden lg:flex items-center gap-2">{links}</ul>
+
           {user ? (
             <motion.button
               whileHover={{ scale: 1.2 }}

@@ -1,58 +1,101 @@
-// FeedbackSlider.jsx
-
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation,Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-const testimonialData = [
+const testimonials = [
+  {
+    name: "Emily Parker",
+    position: "CEO at Elegance Boutique",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    feedback:
+      "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+    rating: 4,
+  },
   {
     name: "John Doe",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
-    feedback: "Swift Cash made transferring money a breeze! Highly recommend it!",
+    position: "Manager at Success Corp",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    feedback: "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+    rating: 5,
   },
   {
-    name: "Jane Smith",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
-    feedback: "Secure and fast transactions—exactly what I needed!",
+    name: "Sophia Lee",
+    position: "Founder at Bright Ideas",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    feedback: "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+    rating: 5,
   },
   {
-    name: "Sam Wilson",
-    photo: "https://randomuser.me/api/portraits/women/44.jpg",
-    feedback: "The user interface is so simple and intuitive. Love it!",
+    name: "Sophia Lee",
+    position: "Founder at Bright Ideas",
+    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    feedback: "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+    rating: 5,
   },
+  // Add more testimonials if needed
 ];
 
 const Testimonial = () => {
   return (
-    <section className="py-10  text-text-light">
-      <div className="container mx-auto px-5">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          What Our Users Say
-        </h2>
-        <Swiper
-          spaceBetween={30}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          className="max-w-4xl mx-auto"
-        >
-          {testimonialData.map((user, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-surface p-6 rounded-lg shadow-lg text-center">
-                <img
-                  src={user.photo}
-                  alt={user.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4"
-                />
-                <h3 className="text-xl font-semibold mb-2">{user.name}</h3>
-                <p className="text-text-muted">{user.feedback}</p>
+    <div className="py-8 text-white">
+      <h2 className="text-2xl font-bold text-center mb-6">We Love Our Client Feedback</h2>
+      <Swiper
+      
+       style={{
+        "--swiper-pagination-color": "#01D676",
+        "---swiper-navigation-color": "#01D676",
+        "--swiper-pagination-bullet-inactive-color": "#999999",
+        "--swiper-pagination-bullet-inactive-opacity": "1",
+        "--swiper-pagination-bullet-size": "16px",
+        "--swiper-pagination-bullet-horizontal-gap": "6px",
+      }}
+        modules={[Navigation, Pagination,Autoplay]}
+        spaceBetween={30}
+        slidesPerView={1.5}
+        centeredSlides
+        autoplay={{ delay: 3000 }} // Slide change delay in ms
+        loop
+        pagination={{ clickable: true }}
+        className="w-full"
+      >
+        {testimonials.map((testimonial, index) => (
+          <SwiperSlide
+            key={index}
+            className="transition-transform duration-500 ease-in-out"
+          >
+            <div className="flex flex-col md:flex-row items-center bg-bg-main shadow-lg rounded-lg p-6">
+              {/* Image Section */}
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-full lg:w-[50%] h-[400px] object-cover "
+              />
+              {/* Text Section */}
+              <div className="mt-4 md:mt-0 md:ml-6 text-center md:text-left">
+                <p className="text-white/70 mb-4">{testimonial.feedback}</p>
+                <p className="text-lg font-bold">{testimonial.name}</p>
+                <p className="text-sm text-white/70">{testimonial.position}</p>
+                <div className="flex justify-center md:justify-start mt-2">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <span key={i} className="text-brand-primary text-lg">
+                      ★
+                    </span>
+                  ))}
+                  {Array.from({ length: 5 - testimonial.rating }).map(
+                    (_, i) => (
+                      <span key={i} className="text-gray-300 text-lg">
+                        ★
+                      </span>
+                    )
+                  )}
+                </div>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </section>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 };
 
