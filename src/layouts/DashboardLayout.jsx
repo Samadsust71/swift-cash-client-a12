@@ -1,20 +1,27 @@
-import { Outlet } from 'react-router-dom'
-
-
+import { Outlet } from "react-router-dom";
+import DashboardNavbar from "../components/shared/DahboardNavbar";
+import LeftSidebar from "../components/shared/LeftSidebar";
+import Footer from "../components/footer/Footer";
 const DashboardLayout = () => {
   return (
-    <div className='relative min-h-screen md:flex '>
-      {/* Left Side: Sidebar Component */}
-      <div></div>
-      {/* Right Side: Dashboard Dynamic Content */}
-      <div className='flex-1  md:ml-64'>
-        <div className='p-5'>
-          {/* Outlet for dynamic contents */}
-          <Outlet />
+    <div className="relative  ">
+      <DashboardNavbar/>
+      <div className="min-h-screen md:flex mt-[66px]">
+        {/* Left Side: Sidebar Component */}
+       <div className="fixed left-0 top-16">
+       <LeftSidebar/>
+       </div>
+        <div className="flex-1  md:ml-64">
+          <div className="p-5">
+            {/* Outlet for dynamic contents */}
+            <Outlet />
+          </div>
         </div>
       </div>
+      {/* Right Side: Dashboard Dynamic Content */}
+      <Footer/>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardLayout
+export default DashboardLayout;
