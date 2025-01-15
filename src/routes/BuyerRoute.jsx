@@ -4,16 +4,16 @@ import useRole from "../hooks/useRole"
 import PropTypes from "prop-types"
 
 
-const AdminRoute = ({ children }) => {
+const BuyerRoute = ({children}) => {
     const [role, isLoading] = useRole()
   
     if (isLoading) return <Loading />
-    if (role === 'Admin') return children
+    if (role === 'Buyer') return children
     return <Navigate to='/dashboard' replace='true' />
   }
   
-  AdminRoute.propTypes = {
+  BuyerRoute.propTypes = {
     children: PropTypes.element,
   }
-  
-  export default AdminRoute
+
+export default BuyerRoute
