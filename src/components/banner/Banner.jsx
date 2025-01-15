@@ -36,7 +36,7 @@ const Banner = () => {
     <div className="relative">
       <Swiper
         style={{
-          "--swiper-pagination-color": "#90BE6D",
+          "--swiper-pagination-color": "#01D676",
           "--swiper-pagination-bullet-inactive-color": "#999999",
           "--swiper-pagination-bullet-inactive-opacity": "1",
           "--swiper-pagination-bullet-size": "16px",

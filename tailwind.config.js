@@ -12,14 +12,14 @@ export default {
         "text-muted": "#bdbdbd", // Secondary or muted text color
       },
       keyframes: {
-        borderAnimation: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
+        'border-spin': {
+          '100%': {
+            transform: 'rotate(-360deg)',
+          },
         },
       },
       animation: {
-        border: "borderAnimation 3s linear infinite",
+        'border-spin': 'border-spin 7s linear infinite',
       },
     },
   },

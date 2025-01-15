@@ -12,6 +12,7 @@ const Home = () => {
     <div>
       <Banner />
       <div className="container mx-auto space-y-10 mt-10">
+        
         <StatsSection />
         <BestWorker />
         <CashoutSection />

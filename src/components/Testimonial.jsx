@@ -49,7 +49,7 @@ const Testimonial = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center bg-bg-main p-8 rounded-lg shadow-lg">
+    <div className="flex flex-col lg:flex-row items-center justify-center bg-bg-main p-6 rounded-lg shadow-lg">
       <div className="flex-1 flex justify-center items-center relative">
         <div className="w-[100%] h-80 rounded-lg overflow-hidden">
           <AnimatePresence mode="wait">
