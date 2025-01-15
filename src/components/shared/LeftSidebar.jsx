@@ -1,23 +1,50 @@
-import { Link } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
+import useRole from "../../hooks/useRole";
+import useAuth from "../../hooks/useAuth";
+
+// Helper function to generate sidebar links
+const generateLinks = (links) => {
+  return links.map(({ to, label }) => (
+    <li key={to}>
+      <NavLink to={to}>{label}</NavLink>
+    </li>
+  ));
+};
 
 const LeftSidebar = () => {
-  const sidebarLinks = (
-    <>
-      <li>
-        <Link to="/dashboard/home">Home</Link>
-      </li>
-      <li>
-        <a>TaskList</a>
-      </li>
-      <li>
-        <a >My Submissions</a>
-      </li>
-      <li>
-        <a >withdrawals</a>
-      </li>
-      
-    </>
-  );
+  const { user } = useAuth();
+  const [role] = useRole();
+
+  // Define links based on roles
+  const adminLinks = [
+    { to: "adminHome", label: "Home" },
+    { to: "manage-users", label: "Manage Users" },
+    { to: "manage-tasks", label: "Manage Task" },
+  ];
+
+  const buyerLinks = [
+    { to: "buyerHome", label: "Home" },
+    { to: "add-tasks", label: "Add New Tasks" },
+    { to: "my-tasks", label: "My Tasks" },
+    { to: "purchase-coins", label: "Purchase Coins" },
+    { to: "payment-history", label: "Payment History" },
+  ];
+
+  const workerLinks = [
+    { to: "workerHome", label: "Home" },
+    { to: "workerTaskList", label: "Task List" },
+    { to: "workerSubmissions", label: "My Submissions" },
+    { to: "workerWithdrawals", label: "Withdrawals" },
+    
+  ];
+
+  // Determine which links to render
+  const sidebarLinks =
+    user && role === "Admin"
+      ? generateLinks(adminLinks)
+      : user && role === "Buyer"
+      ? generateLinks(buyerLinks)
+      : generateLinks(workerLinks);
 
   return (
     <div className="drawer lg:drawer-open">

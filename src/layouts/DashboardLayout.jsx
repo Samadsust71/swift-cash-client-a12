@@ -11,7 +11,7 @@ const DashboardLayout = () => {
        <div className="fixed left-0 top-16">
        <LeftSidebar/>
        </div>
-        <div className="flex-1  md:ml-64">
+        <div className="flex-1  lg:ml-80">
           <div className="p-5">
             {/* Outlet for dynamic contents */}
             <Outlet />

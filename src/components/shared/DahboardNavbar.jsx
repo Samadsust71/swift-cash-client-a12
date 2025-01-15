@@ -2,8 +2,12 @@ import logo from "../../assets/logo-3.png";
 import coinIcon from "../../assets/coin.gif";
 import userIcon from "../../assets/userIcon.jpg";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
+import { useNavigate } from "react-router-dom";
 const DahboardNavbar = () => {
     const {user} = useAuth()
+    const [role] = useRole()
+    const navigate = useNavigate()
   const contents = (
     <>
       <li>
@@ -21,14 +25,14 @@ const DahboardNavbar = () => {
                     className="h-7 w-7 rounded-full object-cover"
                     alt="user"
                   />
-                  <p>{user?.displayName.slice(0, 6) || "user"}</p>
+                  <p>{user?.displayName?.slice(0, 6) || "user"}</p>
                 </div>
               </li>
             )}
       {user && (
               <li>
                 <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none ">
-                  <p>{user?.role || "Worker"}</p>
+                  <p>{role || "Worker"}</p>
                 </div>
               </li>
             )}
@@ -59,7 +63,7 @@ const DahboardNavbar = () => {
             </svg>
           </label>
         </div>
-        <img src={logo} alt="logo" className="h-10 w-10 object-cover" />
+        <img onClick={()=>navigate("/")} src={logo} alt="logo" className="h-10 w-10 object-cover cursor-pointer" />
       </div>
 
       <div className="navbar-end w-[75%]">
