@@ -31,12 +31,12 @@ const CashoutSection = () => {
             className={`relative w-full h-24 bg-bg-main rounded-xl flex items-center justify-center text-white text-lg font-medium shadow-lg hover:scale-110 transition-transform ${glowEffect}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2, duration: 0.5 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+            transition={{ delay: index * 0.4, duration: 0.5 }}
+            whileHover={{ scale: 0.95 }}
+            whileTap={{ scale: 0.90 }}
           >
-            {method.icon}
-            <span className="absolute bottom-2 text-sm">{method.name}</span>
+            <span className="mb-4">{method.icon}</span>
+            <span className="absolute bottom-4">{method.name}</span>
           </motion.div>
         ))}
       </div>

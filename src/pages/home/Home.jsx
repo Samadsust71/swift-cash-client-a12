@@ -4,6 +4,7 @@ import CashoutSection from "../../components/stats-section/CashoutSection";
 import FAQSection from "../../components/stats-section/FAQSection";
 import FeaturesSection from "../../components/stats-section/FeaturesSection";
 import StatsSection from "../../components/stats-section/StatsSection";
+import TrustSection from "../../components/stats-section/TrustSection";
 import Testimonial from "../../components/Testimonial";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
         <StatsSection />
         <BestWorker />
         <CashoutSection />
+        <TrustSection/>
         <Testimonial />
         <FeaturesSection />
         <FAQSection />
