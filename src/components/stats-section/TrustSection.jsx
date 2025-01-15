@@ -4,7 +4,7 @@ const TrustSection = () => {
   return (
     <div className="flex flex-col md:flex-row  text-white rounded-md">
       {/* Left Section */}
-      <div className="flex-1 p-8 flex flex-col justify-center bg-brand-primary rounded-md">
+      <div className="flex-1 p-8 flex flex-col justify-center bg-surface rounded-md">
         <h2 className="text-4xl font-bold mb-4">
           Global Trust of <span className="text-5xl">1 Million</span> Businesses and Counting
         </h2>
