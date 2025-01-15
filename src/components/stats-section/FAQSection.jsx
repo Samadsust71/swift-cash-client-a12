@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "How to make money on Freecash?",
+    question: "How to make money on Swift Cash?",
     answer: "You can earn money by completing offers, surveys, and referring others to Freecash.",
   },
   {
-    question: "How is Freecash able to pay users?",
+    question: "How is Swift Cash able to pay users?",
     answer: "Freecash partners with advertisers and companies who pay for user engagement and actions.",
   },
   {
-    question: "How much money can you really earn on Freecash?",
+    question: "How much money can you really earn on Swift Cash?",
     answer: "Earnings depend on the offers completed, but users have reported making anywhere from a few dollars to hundreds per month.",
   },
   {
@@ -29,14 +29,14 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="bg-bg-main text-white py-12 px-6">
+    <div className=" text-white py-12 px-6">
       <h2 className="text-center text-2xl md:text-3xl font-bold mb-6">
         Frequently Asked Questions
       </h2>
 
       <div className="max-w-3xl mx-auto space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="bg-gray-900 rounded-lg">
+          <div key={index} className="bg-bg-main rounded-lg">
             <button
               className="w-full flex justify-between items-center p-4 text-left"
               onClick={() => toggleFAQ(index)}
