@@ -20,7 +20,7 @@ import WorkerTasklist from "../pages/dashboard/worker/WorkerTasklist";
 import WorkerWithdrawls from "../pages/dashboard/worker/WorkerWithdrawls";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
-
+import TaskDetails from "../pages/dashboard/worker/TaskDetails";
 
 const router = createBrowserRouter([
   {
@@ -82,11 +82,13 @@ const router = createBrowserRouter([
       {
         path: "buyerHome",
 
-        element: <PrivateRoute>
-          <BuyerRoute>
-          <BuyerHome />
-          </BuyerRoute>
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <BuyerRoute>
+              <BuyerHome />
+            </BuyerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-tasks",
@@ -100,59 +102,73 @@ const router = createBrowserRouter([
       },
       {
         path: "payment-history",
-        element: <PrivateRoute>
-        <BuyerRoute>
-        <BuyerPaymentHistory />
-        </BuyerRoute>
-      </PrivateRoute>
-        
-        ,
+        element: (
+          <PrivateRoute>
+            <BuyerRoute>
+              <BuyerPaymentHistory />
+            </BuyerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "purchase-coins",
-        element: <PrivateRoute>
-        <BuyerRoute>
-        <BuyerPurchaseCoin />
-        </BuyerRoute>
-      </PrivateRoute>
-        
-        ,
+        element: (
+          <PrivateRoute>
+            <BuyerRoute>
+              <BuyerPurchaseCoin />
+            </BuyerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-tasks",
-        element:<PrivateRoute>
-        <BuyerRoute>
-        <BuyerTasks />
-        </BuyerRoute>
-      </PrivateRoute>
-        
-        ,
+        element: (
+          <PrivateRoute>
+            <BuyerRoute>
+              <BuyerTasks />
+            </BuyerRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "workerHome",
-        element: <PrivateRoute>
-          <WorkerHome />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <WorkerHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "workerSubmissions",
-        element: <PrivateRoute>
- <WorkerSubmission />
-        </PrivateRoute>
-        
-       ,
+        element: (
+          <PrivateRoute>
+            <WorkerSubmission />
+          </PrivateRoute>
+        ),
       },
       {
         path: "workerTaskList",
-        element: <PrivateRoute>
-          <WorkerTasklist />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <WorkerTasklist />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "workerTaskList/taskDetails/:id",
+        element: (
+          <PrivateRoute>
+            <TaskDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "workerWithdrawals",
-        element: <PrivateRoute>
-          <WorkerWithdrawls />
-        </PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <WorkerWithdrawls />
+          </PrivateRoute>
+        ),
       },
     ],
   },

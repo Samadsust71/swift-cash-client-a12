@@ -55,7 +55,7 @@ const BuyerAddTask = () => {
 
     const image = task_image[0];
     const task_image_url = await imageUpload(image); 
-    const buyer = {email: user?.email}
+    const buyer = {email: user?.email,name:user?.displayName}
     const task= {task_title,task_image_url,task_detail,submission_info,required_workers,payable_amount,deadline, buyer}  
     await mutateAsync(task);
     refetch()

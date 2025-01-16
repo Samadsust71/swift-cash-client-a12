@@ -1,5 +1,8 @@
+import { Link} from "react-router-dom";
+
 // eslint-disable-next-line react/prop-types
 const WorkerTasklistCard = ({task}) => {
+    
     const {
         _id,
         task_title,
@@ -19,7 +22,7 @@ const WorkerTasklistCard = ({task}) => {
         <h2 className="card-title">{task_title}</h2>
         <p>{task_detail?.slice(0,70)}...</p>
         <div className="card-actions">
-          <button className="btn">Details</button>
+          <Link to={`taskDetails/${_id}`} className="btn">Details</Link>
         </div>
       </div>
     </div>
