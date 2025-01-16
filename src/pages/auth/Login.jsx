@@ -22,7 +22,7 @@ const Login = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("Login Succesfull");
-        navigate("/");
+        navigate("/dashboard");
         reset();
         setLoading(false);
       })
@@ -49,7 +49,7 @@ const Login = () => {
       };
       axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
       toast.success("Login Successfull !!!")
-      navigate( "/");
+      navigate( "/dashboard");
     })
     .catch((err) => {
       setLoading(false)

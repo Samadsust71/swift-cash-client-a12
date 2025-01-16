@@ -7,11 +7,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import userIcon from "../../assets/userIcon.jpg";
-import coinIcon from "../../assets/logo1.webp"
+import coinIcon from "../../assets/coin.gif"
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
+  const [userInfo] = useRole()
   const { signOutUser, user } = useAuth();
 
   const handleSignOut = () => {
@@ -57,7 +58,7 @@ const Navbar = () => {
               alt="user"
             />
 
-            <div className="">100</div>
+            <div className="">{userInfo?.coins}</div>
           </div>
         </li>
       )}

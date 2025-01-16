@@ -10,26 +10,55 @@ import {
   SaladIcon,
 } from "lucide-react";
 import { imageUpload } from "../../../api/utils";
+import useRole from "../../../hooks/useRole";
+import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 
 const BuyerAddTask = () => {
+  const [userInfo,,refetch] = useRole()
+  const {user} = useAuth()
   const {
     handleSubmit,
     control,
     register,
     formState: { errors },
   } = useForm();
+   const axiosSecure = useAxiosSecure()
+  const { isPending, mutateAsync } = useMutation({
+    mutationFn: async (taskData) => {
+      await axiosSecure.post(`/tasks/${user?.email}`, taskData);
+    },
+    onSuccess: () => {
+      toast.success(
+        "Your task has been added successfully!"
+      );
+      
+    },
+    onError: () => {
+      toast.error(
+        "Please try again or check your inputs."
+      );
+    },
+  });
 
   const onSubmit = async(data) => {
     const {task_title,task_image,task_detail,submission_info,
       required_workers,payable_amount,deadline
     } = data
+    const totalPayableAmount = required_workers * payable_amount
+    if(parseInt(totalPayableAmount) > parseInt(userInfo?.coins)){
+      toast.error("Not Enough Coin")
+      return
+    }
 
     const image = task_image[0];
-    
-    const task_image_url = await imageUpload(image);
-    console.log(task_image_url);
-    // Handle form submission logic here
-    
+    const task_image_url = await imageUpload(image); 
+    const buyer = {email: user?.email}
+    const task= {task_title,task_image_url,task_detail,submission_info,required_workers,payable_amount,deadline, buyer}  
+    await mutateAsync(task);
+    refetch()
   };
 
   return (
@@ -147,8 +176,11 @@ const BuyerAddTask = () => {
           <input
             type="file"
             className="file-input file-input-bordered w-full"
-            {...register("task_image")}
+            {...register("task_image",{ required: "Image is required" })}
           />
+          {errors.task_image && (
+            <p className="text-red-500 text-sm mt-1">{errors.task_image.message}</p>
+          )}
         </div>
 
         {/* Task Details */}
@@ -172,9 +204,10 @@ const BuyerAddTask = () => {
         <div className="form-control mt-6">
           <button
             type="submit"
+            disabled={isPending}
             className="btn bg-primary-bg hover:bg-primary-bg/70 text-white"
           >
-            Add Task
+            {isPending?"Adding":"Add Task"}
           </button>
         </div>
       </form>

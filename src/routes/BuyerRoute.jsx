@@ -5,10 +5,10 @@ import PropTypes from "prop-types"
 
 
 const BuyerRoute = ({children}) => {
-    const [role, isLoading] = useRole()
+    const [userInfo, isLoading] = useRole()
   
     if (isLoading) return <Loading />
-    if (role === 'Buyer') return children
+    if (userInfo?.role === 'Buyer') return children
     return <Navigate to='/dashboard' replace='true' />
   }
   

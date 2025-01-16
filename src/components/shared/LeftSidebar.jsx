@@ -13,7 +13,7 @@ const generateLinks = (links) => {
 
 const LeftSidebar = () => {
   const { user } = useAuth();
-  const [role] = useRole();
+  const [userInfo] = useRole();
 
   // Define links based on roles
   const adminLinks = [
@@ -40,9 +40,9 @@ const LeftSidebar = () => {
 
   // Determine which links to render
   const sidebarLinks =
-    user && role === "Admin"
+    user && userInfo?.role === "Admin"
       ? generateLinks(adminLinks)
-      : user && role === "Buyer"
+      : user && userInfo?.role === "Buyer"
       ? generateLinks(buyerLinks)
       : generateLinks(workerLinks);
 
