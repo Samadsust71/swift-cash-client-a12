@@ -6,7 +6,7 @@ import useRole from "../../hooks/useRole";
 import { useNavigate } from "react-router-dom";
 const DahboardNavbar = () => {
     const {user} = useAuth()
-    const [role] = useRole()
+    const [userInfo] = useRole()
     const navigate = useNavigate()
   const contents = (
     <>
@@ -14,7 +14,7 @@ const DahboardNavbar = () => {
         <div className="flex items-center bg-[#2F3043] rounded-md pr-3 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none gap-1">
           <img src={coinIcon} className="h-7 w-7  object-cover" alt="user" />
 
-          <div className="">100</div>
+          <div className="">{userInfo?.coins || 10}</div>
         </div>
       </li>
       {user && (
@@ -32,7 +32,7 @@ const DahboardNavbar = () => {
       {user && (
               <li>
                 <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none ">
-                  <p>{role || "Worker"}</p>
+                  <p>{userInfo?.role || "Worker"}</p>
                 </div>
               </li>
             )}

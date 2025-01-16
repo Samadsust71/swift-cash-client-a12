@@ -80,9 +80,13 @@ const router = createBrowserRouter([
         ),
       },
       {
-        index:true,
         path: "buyerHome",
-        element: <BuyerHome />,
+
+        element: <PrivateRoute>
+          <BuyerRoute>
+          <BuyerHome />
+          </BuyerRoute>
+        </PrivateRoute>,
       },
       {
         path: "add-tasks",
