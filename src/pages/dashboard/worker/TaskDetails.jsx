@@ -27,14 +27,13 @@ const TaskDetails = () => {
   if (isError) console.log(isError);
 
   const {
-    _id,
+    
     task_title,
-    task_image_url,
+    
     task_detail,
-    submission_info,
-    required_workers,
+    
     payable_amount,
-    deadline,
+    
     buyer,
   } = taskDetails || {};
 
@@ -48,7 +47,7 @@ const TaskDetails = () => {
       payable_amount: payable_amount,
       worker_email: user?.email,
       worker_name: user?.displayName,
-      buyer_name: buyer?.name,
+      buyer_name: buyer?.name || "N/A",
       buyer_email: buyer?.email,
       submission_details: submissionDetails,
       current_date: new Date(),
