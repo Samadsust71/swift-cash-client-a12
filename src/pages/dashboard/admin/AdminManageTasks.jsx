@@ -45,7 +45,7 @@ const AdminManageTasks = () => {
                   <td>{task?.buyer?.name || "N/A"}</td>
                   <td>{task?.buyer?.email}</td>
                   <td>
-                    <button className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500">
+                    <button onClick={()=>handleTask(task?._id)} className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500">
                       Delete
                     </button>
                   </td>
