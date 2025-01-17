@@ -22,7 +22,7 @@ const WorkerSubmission = () => {
   if(isError) console.log("error happend in my submission", isError)
   return (
     <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-6">Added Tasks</h2>
+      <h2 className="text-3xl font-semibold text-center mb-6">All Submission</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
         {mySubmissions && mySubmissions.length ? (
@@ -63,7 +63,7 @@ const WorkerSubmission = () => {
           </table>
         ) : (
           <div className="flex justify-center items-center my-5">
-            <p className="text-center">No Task added</p>
+            <p className="text-center">No Submission made</p>
           </div>
         )}
       </div>

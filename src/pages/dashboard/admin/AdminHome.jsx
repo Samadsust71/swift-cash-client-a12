@@ -3,6 +3,8 @@ import AdminStates from "../../../components/admin-componets/AdminStates";
 import Loading from "../../../components/Loading";
 import useAdmin from "../../../hooks/useAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const AdminHome = () => {
   const [adminInfo, isLoading] = useAdmin();
@@ -11,6 +13,7 @@ const AdminHome = () => {
     data: withdrawRequests = [],
     isLoading: loading,
     isError,
+    refetch
   } = useQuery({
     queryKey: ["withdraw-Requests"],
     queryFn: async () => {
@@ -18,9 +21,43 @@ const AdminHome = () => {
       return data;
     },
   });
-
   if (isLoading || loading) return <Loading />;
   if (isError) console.log("error in admin home", isError);
+
+  const handleUpdate= (request)=>{
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, proccess the payment!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+         
+        try {
+          const {data} = await axiosSecure.patch(`/withdrawals-request/${request?._id}`,request)
+          if(data?.modifiedCount){
+            Swal.fire({
+              title: "Payment Succesfull",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+            refetch()
+          }
+          
+        } catch (error) {
+          toast.error(error?.message || "Some thing went Wrong")
+        }
+
+       
+      }
+    });
+
+     
+  }
   return (
     <div>
       <AdminStates adminInfo={adminInfo} />
@@ -56,7 +93,7 @@ const AdminHome = () => {
                       </button>
                     </td>
                     <td>
-                      <button className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500">
+                      <button onClick={()=>handleUpdate(request)} className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500">
                         Payment Success
                       </button>
                     </td>
