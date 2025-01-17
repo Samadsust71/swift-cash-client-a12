@@ -3,12 +3,15 @@ import { FaCoins, FaDollarSign } from "react-icons/fa"
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import {  useMutation } from "@tanstack/react-query";
 
 
 
 const WorkerWithdrawls = () => {
   const {user} = useAuth()
   const [userInfo] = useRole()
+  const axiosSecure = useAxiosSecure()
   const [coinToWithdraw, setCoinToWithdraw] = useState(0);
   const [withdrawalAmount, setWithdrawalAmount] = useState(0);
   const [paymentSystem, setPaymentSystem] = useState("");
@@ -33,8 +36,22 @@ const WorkerWithdrawls = () => {
       setWithdrawalAmount(value / 20); // Convert coins to dollars 
     
   };
-
-  const handleSubmit = (e) => {
+ // Mutation to handle API call
+ const { isPending, mutateAsync } = useMutation({
+  mutationFn: async (withdrawalData) => {
+    await axiosSecure.post("/withdrawals", withdrawalData);
+  },
+  onSuccess: () => {
+    toast.success(
+      "Withdrawal request submitted successfully!"
+    );
+    
+  },
+  onError: (error) => {
+    toast.error(error?.response?.data?.message || "Failed to submit request.");
+  },
+});
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (coinToWithdraw > userInfo?.coins) {
       toast.error("Insufficient coins");
@@ -56,7 +73,7 @@ const WorkerWithdrawls = () => {
       status: "pending",
     };
 
-   console.log(withdrawalData)
+    await mutateAsync(withdrawalData);
   };
 
  
@@ -132,7 +149,8 @@ const WorkerWithdrawls = () => {
           type="submit"
           className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-md transition-all"
         >
-          Withdraw
+          {isPending?"Withdrawing...":"Withdraw"}
+          
         </button>
       ) : (
         <p className="text-red-500 text-center">Insufficient coins (Minimum 200 coins required).</p>

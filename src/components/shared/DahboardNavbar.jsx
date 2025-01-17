@@ -4,8 +4,11 @@ import userIcon from "../../assets/userIcon.jpg";
 import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
 import { useNavigate } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
+import Loading from "../Loading";
 const DahboardNavbar = () => {
-    const {user} = useAuth()
+    const {user,loading} = useAuth()
+    const [adminInfo] = useAdmin()
     const [userInfo] = useRole()
     const navigate = useNavigate()
   const contents = (
@@ -14,7 +17,7 @@ const DahboardNavbar = () => {
         <div className="flex items-center bg-[#2F3043] rounded-md pr-3 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none gap-1">
           <img src={coinIcon} className="h-7 w-7  object-cover" alt="user" />
 
-          <div className="">{userInfo?.coins || 10}</div>
+          <div className="">{userInfo?.role ==="Admin"? adminInfo?.totalAvailableCoins:userInfo?.coins }</div>
         </div>
       </li>
       {user && (
@@ -39,7 +42,7 @@ const DahboardNavbar = () => {
       
     </>
   );
-
+ if(loading) return<Loading/>
   return (
     <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] z-20">
         <div className="navbar p-0 container mx-auto text-text-light">

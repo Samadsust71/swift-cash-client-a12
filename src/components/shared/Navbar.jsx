@@ -9,10 +9,12 @@ import toast from "react-hot-toast";
 import userIcon from "../../assets/userIcon.jpg";
 import coinIcon from "../../assets/coin.gif"
 import useRole from "../../hooks/useRole";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [userInfo] = useRole()
+  const [adminInfo] = useAdmin()
   const { signOutUser, user } = useAuth();
 
   const handleSignOut = () => {
@@ -58,7 +60,7 @@ const Navbar = () => {
               alt="user"
             />
 
-            <div className="">{userInfo?.coins}</div>
+            <div className="">{userInfo?.role ==="Admin"? adminInfo?.totalAvailableCoins :userInfo?.coins}</div>
           </div>
         </li>
       )}
