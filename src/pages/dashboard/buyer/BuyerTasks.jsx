@@ -4,6 +4,8 @@ import useAuth from "../../../hooks/useAuth";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
+import TaskUpdateModal from "../../../components/modal/TaskUpdateModal";
+import { useState } from "react";
 
 
 
@@ -13,13 +15,16 @@ const BuyerTasks = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
- 
+   
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState(null);
   
   
   const {
     data: myTasks = [],
     isLoading,
     isError,
+    refetch
   } = useQuery({
     queryKey: ["my-tasks", user?.email],
     queryFn: async () => {
@@ -28,17 +33,7 @@ const BuyerTasks = () => {
     },
   });
 
-  if (isLoading) return <Loading />;
-
-  if (isError)
-    return (
-      <div className="flex justify-center items-center my-5">
-        <p className="text-center">
-          Unable to load your tasks. Please check your internet connection or
-          try reloading the page.
-        </p>
-      </div>
-    );
+ 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -62,7 +57,21 @@ const BuyerTasks = () => {
       }
     });
   };
- 
+
+  
+  const openModal = (task) => {
+    setSelectedTask(task);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  if (isLoading) return <Loading />;
+
+  if (isError) console.log("Error in buyer tasks page")
+    
   return (
     <div className="p-6  rounded-lg shadow-lg my-10 w-11/12 mx-auto">
       <h2 className="text-3xl font-semibold text-center mb-6">Added Tasks</h2>
@@ -73,7 +82,7 @@ const BuyerTasks = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>Serial</th>
+                
                 <th>Task</th>
                 <th>Required Workers</th>
                 <th>Deadline</th>
@@ -82,9 +91,9 @@ const BuyerTasks = () => {
               </tr>
             </thead>
             <tbody>
-              {myTasks.map((task, idx) => (
+              {myTasks.map((task) => (
                 <tr key={task?._id}>
-                  <th>{idx + 1}</th>
+                  
                   <td>{task?.task_title.slice(0, 30)}</td>
                   <td>{task?.required_workers}</td>
                   <td>{format(new Date(task?.deadline), "dd-MM-yyyy")}</td>
@@ -92,7 +101,7 @@ const BuyerTasks = () => {
                   <td>
                   <button
                       className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500"
-                      
+                      onClick={() => openModal(task)}
                     >
                       Update
                     </button>
@@ -115,7 +124,14 @@ const BuyerTasks = () => {
           </div>
         )}
       </div>
-     
+        
+         {/* Render the TaskUpdateModal component */}
+      <TaskUpdateModal
+        isOpen={isModalOpen}
+        closeModal={closeModal}
+        task={selectedTask}
+        refetch={refetch}
+      />
     </div>
   );
 };

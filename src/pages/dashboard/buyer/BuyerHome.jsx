@@ -5,9 +5,13 @@ import useAuth from "../../../hooks/useAuth";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Dialog } from "@headlessui/react";
+import { useState } from "react";
 
 const BuyerHome = () => {
   const axiosSecure = useAxiosSecure();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal visibility
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
   const { user } = useAuth();
   const {
     data: buyerStat = {},
@@ -20,8 +24,8 @@ const BuyerHome = () => {
       return data;
     },
   });
-  
-  const { data: allSUbmissions = [] ,refetch} = useQuery({
+
+  const { data: allSUbmissions = [], refetch } = useQuery({
     queryKey: ["all-submissions", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -33,7 +37,7 @@ const BuyerHome = () => {
   if (isLoading) return <Loading />;
   if (isError) console.log("error happend in buyer home", isError);
 
-  const handleApprove =  (submissionInfo) => {
+  const handleApprove = (submissionInfo) => {
     const { _id, worker_email, payable_amount } = submissionInfo;
     Swal.fire({
       title: "Are you sure?",
@@ -63,11 +67,9 @@ const BuyerHome = () => {
         }
       }
     });
-    
-    
   };
   const handleReject = async (submissionInfo) => {
-    const { _id,task_id } = submissionInfo;
+    const { _id, task_id } = submissionInfo;
 
     Swal.fire({
       title: "Are you sure?",
@@ -81,8 +83,8 @@ const BuyerHome = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.patch(`/buyer/reject/${_id}`, {
-            task_id
-           });
+            task_id,
+          });
           if (data) {
             Swal.fire({
               title: "Reject",
@@ -97,7 +99,14 @@ const BuyerHome = () => {
       }
     });
   };
+  const openModal = (submissionInfo) => {
+    setSelectedSubmission(submissionInfo); // Set selected submission details
+    setIsModalOpen(true); // Open the modal
+  };
 
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
   return (
     <div className="mt-12">
       <BuyerStates buyerStat={buyerStat} />
@@ -126,7 +135,10 @@ const BuyerHome = () => {
                     <td>{submissionInfo?.task_title?.slice(0, 30)}...</td>
                     <td>${submissionInfo?.payable_amount}</td>
                     <td>
-                      <button className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500">
+                      <button
+                        onClick={() => openModal(submissionInfo)}
+                        className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500"
+                      >
                         View Details
                       </button>
                     </td>
@@ -153,11 +165,53 @@ const BuyerHome = () => {
             </table>
           ) : (
             <div className="flex justify-center items-center my-5">
-              <p className="text-center">No Submissions request for your Added Tasks</p>
+              <p className="text-center">
+                No Submissions request for your Added Tasks
+              </p>
             </div>
           )}
         </div>
       </div>
+      {/* Modal (using Headless UI Dialog component) */}
+      <Dialog
+        open={isModalOpen}
+        onClose={closeModal}
+        className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50"
+      >
+        <Dialog.Panel className="bg-white rounded-lg p-6 max-w-md w-full">
+          <Dialog.Title className="text-xl font-semibold">
+            Submission Details
+          </Dialog.Title>
+          <div className="mt-4">
+            {selectedSubmission && (
+              <div>
+                <p>
+                  <strong>Worker Name:</strong> {selectedSubmission?.worker_name}
+                </p>
+                <p>
+                  <strong>Task Title:</strong> {selectedSubmission?.task_title}
+                </p>
+                <p>
+                  <strong>Payable Amount:</strong> $
+                  {selectedSubmission?.payable_amount}
+                </p>
+                <p>
+                  <strong>Submission Detais:</strong>{" "}
+                  {selectedSubmission?.submission_details}
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="mt-4 flex justify-end">
+            <button
+              onClick={closeModal}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </Dialog.Panel>
+      </Dialog>
     </div>
   );
 };

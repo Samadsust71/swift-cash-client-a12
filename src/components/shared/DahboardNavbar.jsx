@@ -44,7 +44,7 @@ const DahboardNavbar = () => {
   );
  if(loading) return<Loading/>
   return (
-    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] z-20">
+    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] inset-0 z-20">
         <div className="navbar p-0 container mx-auto text-text-light">
       <div className="navbar-start">
         {/*drawer open btn for sm device */}
