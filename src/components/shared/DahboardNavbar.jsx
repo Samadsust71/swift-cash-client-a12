@@ -13,13 +13,15 @@ const DahboardNavbar = () => {
     const navigate = useNavigate()
   const contents = (
     <>
-      <li>
-        <div className="flex items-center bg-[#2F3043] rounded-md pr-3 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none gap-1">
-          <img src={coinIcon} className="h-7 w-7  object-cover" alt="user" />
+      {
+        user && <li>
+        <div className="flex items-center bg-[#17413E] rounded-md pr-3 font-semibold text-white shadow-inner shadow-brand-primary/10 focus:outline-none gap-1">
+          <img src={coinIcon} className="h-10 w-10  object-cover rounded-l-md" alt="user" />
 
           <div className="">{userInfo?.role ==="Admin"? adminInfo?.totalAvailableCoins:userInfo?.coins }</div>
         </div>
       </li>
+      }
       {user && (
               <li>
                 <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none ">
@@ -39,12 +41,11 @@ const DahboardNavbar = () => {
                 </div>
               </li>
             )}
-      
     </>
   );
  if(loading) return<Loading/>
   return (
-    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] inset-0 z-20">
+    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] inset-0 z-20 shadow-md border-b border-brand-primary/10">
         <div className="navbar p-0 container mx-auto text-text-light">
       <div className="navbar-start">
         {/*drawer open btn for sm device */}

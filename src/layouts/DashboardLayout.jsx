@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import DashboardNavbar from "../components/shared/DahboardNavbar";
 import LeftSidebar from "../components/shared/LeftSidebar";
-import Footer from "../components/footer/Footer";
+// import Footer from "../components/footer/Footer";
+import DashboardFooter from "../components/shared/DashboardFooter";
 const DashboardLayout = () => {
   return (
     <div className="relative  ">
@@ -12,14 +13,15 @@ const DashboardLayout = () => {
        <LeftSidebar/>
        </div>
         <div className="flex-1  lg:ml-80">
-          <div className="p-5">
+          <div className="p-5 min-h-screen">
             {/* Outlet for dynamic contents */}
             <Outlet />
           </div>
+          <DashboardFooter/>
         </div>
       </div>
       {/* Right Side: Dashboard Dynamic Content */}
-      <Footer/>
+      
     </div>
   );
 };
