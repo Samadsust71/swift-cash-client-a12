@@ -44,7 +44,7 @@ const LeftSidebar = () => {
       ? generateLinks(adminLinks)
       : user && userInfo?.role === "Buyer"
       ? generateLinks(buyerLinks)
-      : generateLinks(workerLinks);
+      :user && userInfo?.role === "Worker"? generateLinks(workerLinks):"";
 
   return (
     <div className="drawer lg:drawer-open">

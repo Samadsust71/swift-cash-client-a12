@@ -45,7 +45,7 @@ const Navbar = () => {
                 ? "bg-suface text-brand-primary "
                 : "text-white hover:bg-suface hover:text-brand-primary"
             }
-            to={"/dashboard"}
+            to={userInfo?.role ==="Admin" ? "/dashboard/adminHome":userInfo?.role ==="Buyer"?"/dashboard/buyerHome":userInfo?.role ==="Worker" ? "/dashboard/workerHome" : "/"}
           >
             Dashboard
           </NavLink>

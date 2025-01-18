@@ -21,6 +21,7 @@ import WorkerWithdrawls from "../pages/dashboard/worker/WorkerWithdrawls";
 import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import TaskDetails from "../pages/dashboard/worker/TaskDetails";
+import WorkerRoute from "./WorkerRoute";
 
 const router = createBrowserRouter([
   {
@@ -134,7 +135,9 @@ const router = createBrowserRouter([
         path: "workerHome",
         element: (
           <PrivateRoute>
+            <WorkerRoute>
             <WorkerHome />
+            </WorkerRoute>
           </PrivateRoute>
         ),
       },
@@ -142,7 +145,9 @@ const router = createBrowserRouter([
         path: "workerSubmissions",
         element: (
           <PrivateRoute>
+            <WorkerRoute>
             <WorkerSubmission />
+            </WorkerRoute>
           </PrivateRoute>
         ),
       },
@@ -150,7 +155,9 @@ const router = createBrowserRouter([
         path: "workerTaskList",
         element: (
           <PrivateRoute>
-            <WorkerTasklist />
+           <WorkerRoute>
+           <WorkerTasklist />
+           </WorkerRoute>
           </PrivateRoute>
         ),
       },
@@ -158,7 +165,9 @@ const router = createBrowserRouter([
         path: "workerTaskList/taskDetails/:id",
         element: (
           <PrivateRoute>
+            <WorkerRoute>
             <TaskDetails />
+            </WorkerRoute>
           </PrivateRoute>
         ),
       },
@@ -166,7 +175,9 @@ const router = createBrowserRouter([
         path: "workerWithdrawals",
         element: (
           <PrivateRoute>
+            <WorkerRoute>
             <WorkerWithdrawls />
+            </WorkerRoute>
           </PrivateRoute>
         ),
       },

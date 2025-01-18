@@ -6,10 +6,10 @@ import { Navigate } from "react-router-dom"
 
 
 const WorkerRoute = ({children}) => {
-    const [role, isLoading] = useRole()
+    const [userInfo, isLoading] = useRole()
   
     if (isLoading) return <Loading />
-    if (role === 'Worker') return children
+    if (userInfo?.role === 'Worker') return children
     return <Navigate to='/dashboard' replace='true' />
   }
   
