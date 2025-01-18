@@ -15,9 +15,9 @@ const BuyerTasks = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
-   
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
+  const [selectedTask, setSelectedTask] = useState(null); 
+ 
   
   
   const {
@@ -58,7 +58,11 @@ const BuyerTasks = () => {
     });
   };
 
-  
+  if (isLoading) return <Loading />;
+
+  if (isError) {console.log("Error in buyer tasks page")}
+
+   
   const openModal = (task) => {
     setSelectedTask(task);
     setIsModalOpen(true);
@@ -68,9 +72,7 @@ const BuyerTasks = () => {
     setIsModalOpen(false);
   };
 
-  if (isLoading) return <Loading />;
-
-  if (isError) console.log("Error in buyer tasks page")
+  
     
   return (
     <div className="p-6  rounded-lg shadow-lg my-10 w-11/12 mx-auto">
