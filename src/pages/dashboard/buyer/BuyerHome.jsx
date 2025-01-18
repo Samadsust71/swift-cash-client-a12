@@ -20,6 +20,7 @@ const BuyerHome = () => {
       return data;
     },
   });
+  
   const { data: allSUbmissions = [] ,refetch} = useQuery({
     queryKey: ["all-submissions", user?.email],
     queryFn: async () => {
