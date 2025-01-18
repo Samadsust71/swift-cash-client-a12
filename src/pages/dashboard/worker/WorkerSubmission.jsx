@@ -21,14 +21,14 @@ const WorkerSubmission = () => {
   if(isLoading) return <Loading/>
   if(isError) console.log("error happend in my submission", isError)
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-6">All Submission</h2>
+    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-white">All Submission</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
         {mySubmissions && mySubmissions.length ? (
-          <table className="table">
+          <table className="table text-white">
             {/* head */}
-            <thead>
+            <thead className="bg-surface text-brand-primary text-center">
               <tr>
                 <th>Task title</th>
                 <th>Buyer Name</th>
@@ -38,7 +38,7 @@ const WorkerSubmission = () => {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center bg-surface">
               {mySubmissions.map((submission) => (
                 <tr key={submission?._id}>
                   <td>{submission?.task_title?.slice(0, 10)}</td>
@@ -51,10 +51,23 @@ const WorkerSubmission = () => {
                   <td
                     
                   >
-                    <button className={`px-2 py-1 rounded-md ${
+                    <span className={`text-sm px-2 py-1 rounded-full
+
+                     ${
                       submission?.status == "pending" &&
-                      "bg-yellow-600 text-yellow-200"
-                    }`}>{submission?.status}</button>
+                      "text-yellow-800 bg-yellow-200"
+                     }
+                     ${
+                      submission?.status == "approve" &&
+                      "text-brand-primary bg-brand-primary/5"
+                       
+                     }
+                     ${
+                      submission?.status == "rejected" &&
+                      "text-red-600 bg-red-200"
+                     }
+                    
+                    `}>{submission?.status}</span>
                     
                   </td>
                 </tr>
@@ -62,7 +75,7 @@ const WorkerSubmission = () => {
             </tbody>
           </table>
         ) : (
-          <div className="flex justify-center items-center my-5">
+          <div className="flex justify-center text-white items-center my-5">
             <p className="text-center">No Submission made</p>
           </div>
         )}

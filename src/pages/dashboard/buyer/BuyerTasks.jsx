@@ -124,7 +124,7 @@ const BuyerTasks = () => {
             </tbody>
           </table>
         ) : (
-          <div className="flex justify-center items-center my-5">
+          <div className="flex justify-center text-white items-center my-5">
             <p className="text-center">No Task added</p>
           </div>
         )}

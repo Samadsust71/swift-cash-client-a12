@@ -32,16 +32,16 @@ const WorkerHome = () => {
   return (
     <div>
       <WorkerStates workerStat={workerStat} />
-      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-6">
+      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-white">
           All Approved Submissions 
         </h2>
         <div className="divider"></div>
         <div className="overflow-x-auto">
           {allApprovedSUbmissions && allApprovedSUbmissions.length ? (
-            <table className="table">
+            <table className="table text-white">
               {/* head */}
-              <thead>
+              <thead className="bg-surface  text-brand-primary text-center">
                 <tr>
                   <th>Task Title</th>
                   <th>Buyer Name</th>
@@ -49,19 +49,21 @@ const WorkerHome = () => {
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-center bg-surface">
                 {allApprovedSUbmissions.map((submissionInfo) => (
                   <tr key={submissionInfo?._id}>
                     <td>{submissionInfo?.task_title?.slice(0, 30)}...</td>
                     <td>{submissionInfo?.buyer_name || "N/A"}</td>
                     <td>${submissionInfo?.payable_amount}</td>
-                    <td>{submissionInfo?.status}</td>
+                    <td >
+                      <span className="text-sm bg-brand-primary/5 px-2 py-1 rounded-full text-brand-primary">{submissionInfo?.status}</span>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           ) : (
-            <div className="flex justify-center items-center my-5">
+            <div className="flex justify-center text-white items-center my-5">
               <p className="text-center">
                 No Submissions Approved for your Request{" "}
               </p>

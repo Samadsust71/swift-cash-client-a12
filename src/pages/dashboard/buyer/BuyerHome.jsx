@@ -172,7 +172,7 @@ const BuyerHome = () => {
             </table>
           ) : (
             <div className="flex justify-center items-center my-5">
-              <p className="text-center">
+              <p className="text-center text-white">
                 No Submissions request for your Added Tasks
               </p>
             </div>

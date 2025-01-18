@@ -8,6 +8,7 @@ import {  useMutation } from "@tanstack/react-query";
 
 
 
+
 const WorkerWithdrawls = () => {
   const {user} = useAuth()
   const [userInfo] = useRole()
@@ -17,6 +18,7 @@ const WorkerWithdrawls = () => {
   const [paymentSystem, setPaymentSystem] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [userCoins, setUserCoins] = useState(0);
+  
   useEffect(() => {
     if (userInfo?.coins !== undefined) {
       setUserCoins(userInfo.coins);
@@ -78,7 +80,7 @@ const WorkerWithdrawls = () => {
 
  
   return (
-    <div className="bg-gray-900 text-white p-6 rounded-md shadow-md max-w-lg mx-auto">
+    <div className="bg-surface mt-8 text-white p-6 rounded-md shadow-md max-w-lg mx-auto">
     <h1 className="text-2xl font-bold mb-4 text-center">Withdraw Coins</h1>
 
     <div className="flex items-center justify-between mb-4">
