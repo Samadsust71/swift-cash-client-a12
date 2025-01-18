@@ -29,7 +29,7 @@ const CashoutSection = () => {
           <motion.div
             key={index}
             className={`relative w-full h-24 bg-bg-main rounded-xl flex items-center justify-center text-white text-lg font-medium shadow-lg hover:scale-110 transition-transform ${glowEffect}`}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.4, duration: 0.5 }}
             whileHover={{ scale: 0.95 }}

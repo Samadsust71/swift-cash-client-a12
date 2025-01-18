@@ -3,7 +3,7 @@ import { FaDollarSign } from "react-icons/fa6";
 
 const StatsSection = () => {
   return (
-    <div className="bg-bg-main text-white py-10 px-4 md:px-10 rounded-lg flex flex-col lg:flex-row justify-center items-center lg:space-x-10 space-y-6 lg:space-y-0">
+    <div className="bg-bg-main text-white py-10 px-4 md:px-10 rounded-lg flex flex-col lg:flex-row justify-center items-center lg:space-x-10 space-y-6 lg:space-y-0 container mx-auto">
       {/* First Stat */}
       <div className="flex flex-col items-center text-center">
         <div className="flex items-center space-x-2">
@@ -16,7 +16,7 @@ const StatsSection = () => {
       </div>
 
       {/* Divider */}
-      <div className="divider lg:divider-horizontal "></div>
+      <div className="divider lg:divider-horizontal"></div>
 
       {/* Second Stat */}
       <div className="flex flex-col items-center text-center">

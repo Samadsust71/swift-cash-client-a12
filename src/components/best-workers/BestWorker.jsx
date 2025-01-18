@@ -21,15 +21,17 @@ const BestWorker = () => {
       });
       if (isLoading) return <Loading/>;
       if(isError) {
-        console.log(isError)
+        console.log("error happend in best worker section",isError)
       }
       
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+   <div className="container mx-auto">
+     <div className="grid  gap-4 grid-cols-2 lg:grid-cols-4 ">
       {
         bestWorkers.map((worker) => <BestWorkerCard worker={worker} key={worker?._id}/>)
       }
     </div>
+   </div>
   )
 }
 

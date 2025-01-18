@@ -1,20 +1,20 @@
-import {  FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { IoKey } from "react-icons/io5";
-import {  RiMenu2Fill } from "react-icons/ri";
+import { RiMenu2Fill } from "react-icons/ri";
 import logo from "../../assets/logo-3.png";
 import { motion } from "framer-motion";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import userIcon from "../../assets/userIcon.jpg";
-import coinIcon from "../../assets/coin.gif"
+import coinIcon from "../../assets/coin.gif";
 import useRole from "../../hooks/useRole";
 import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [userInfo] = useRole()
-  const [adminInfo] = useAdmin()
+  const [userInfo] = useRole();
+  const [adminInfo] = useAdmin();
   const { signOutUser, user } = useAuth();
 
   const handleSignOut = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
       <li>
         <a
           href="https://github.com/Samadsust71"
-          className="hover:text-brand-primary  active:bg-surface active:text-brand-primary"
+          className="hover:text-brand-primary font-semibold active:bg-surface active:text-brand-primary"
           target="_blank"
         >
           Join as Developer
@@ -42,10 +42,18 @@ const Navbar = () => {
           <NavLink
             className={({ isActive }) =>
               isActive
-                ? "bg-suface text-brand-primary "
-                : "text-white hover:bg-suface hover:text-brand-primary"
+                ? "bg-suface text-brand-primary font-semibold "
+                : "text-white hover:bg-suface hover:text-brand-primary font-semibold"
             }
-            to={userInfo?.role ==="Admin" ? "/dashboard/adminHome":userInfo?.role ==="Buyer"?"/dashboard/buyerHome":userInfo?.role ==="Worker" ? "/dashboard/workerHome" : "/"}
+            to={
+              userInfo?.role === "Admin"
+                ? "/dashboard/adminHome"
+                : userInfo?.role === "Buyer"
+                ? "/dashboard/buyerHome"
+                : userInfo?.role === "Worker"
+                ? "/dashboard/workerHome"
+                : "/"
+            }
           >
             Dashboard
           </NavLink>
@@ -53,26 +61,15 @@ const Navbar = () => {
       )}
       {user && (
         <li>
-          <div className="flex items-center bg-[#2F3043] rounded-md pr-3 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none gap-1">
-          <img
-              src={coinIcon}
-              className="h-7 w-7  object-cover"
-              alt="user"
-            />
+          <div className="flex items-center bg-[#17413E] rounded-md pr-3 font-semibold text-white shadow-inner shadow-brand-primary/10 focus:outline-none gap-1">
+            <img src={coinIcon} className="h-10 w-10  object-cover rounded-l-md" alt="user" />
 
-            <div className="">{userInfo?.role ==="Admin"? adminInfo?.totalAvailableCoins :userInfo?.coins}</div>
-          </div>
-        </li>
-      )}
-      {user && (
-        <li>
-          <div className="inline-flex items-center gap-2 rounded-md bg-[#2F3043] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none ">
-            <img
-              src={user.photoURL || userIcon}
-              className="h-7 w-7 rounded-full object-cover"
-              alt="user"
-            />
-            <p>{user?.displayName.slice(0, 6) || "user"}</p>
+            <div className="">
+              {userInfo?.role === "Admin"
+                ? adminInfo?.totalAvailableCoins
+                : userInfo?.coins}
+                
+            </div>
           </div>
         </li>
       )}
@@ -80,7 +77,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-bg-main w-full fixed top-0 left-0 h-[66px] z-20">
+    <div className="bg-bg-main w-full fixed inset-0  top-0 left-0 h-[66px] z-20 shadow-md border-b border-brand-primary/10">
       <div className="navbar p-0 container mx-auto text-text-light">
         <div className="navbar-start">
           <div className="dropdown">
@@ -89,14 +86,14 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-bg-main rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           </div>
           <div
             onClick={() => navigate("/")}
-            className="flex items-center cursor-pointer"
+            className="ml-2 lg:ml-0 flex items-center cursor-pointer"
           >
             <img src={logo} alt="logo" className="h-10 w-10 object-cover" />
             <h1 className="uppercase text-2xl font-bold hidden md:block">
@@ -106,7 +103,17 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end w-[75%] flex items-center gap-4">
-          <ul className="px-1 hidden lg:flex items-center gap-2">{links}</ul>
+          <ul className="px-1 hidden lg:flex items-center gap-6">{links}</ul>
+
+          {user && (
+            <div className="rounded-full bg-[#2F3043] p-1 text-sm/6 font-semibold text-white shadow-inner shadow-[#2F3043]/10 focus:outline-none">
+              <img
+                src={user?.photoURL || userIcon}
+                className="h-10 w-10 rounded-full object-cover"
+                alt="user"
+              />
+            </div>
+          )}
 
           {user ? (
             <motion.button
