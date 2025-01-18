@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaGoogle, FaEye, FaEyeSlash } from "react-icons/fa";
+import {  FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -57,12 +58,12 @@ const Login = () => {
     });
 }
   return (
-    <div className="min-h-screen flex items-center justify-center  text-text-light">
-      <div className="bg-surface p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center  text-text-light bg-bg-main">
+      <div className="bg-gradient-to-t to-brand-primary/20 from-surface p-8 rounded-lg shadow-lg w-full max-w-xl">
         <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
-        <button onClick={handleGoogleSignIn} disabled={loading} className="btn btn-outline w-full flex items-center justify-center gap-2 mb-4">
-          <FaGoogle className="text-lg" />
+        <button onClick={handleGoogleSignIn} disabled={loading} className="btn  w-full flex items-center justify-center gap-2 mb-4 bg-white/80 text-gray-900 outline-none border-none hover:bg-white/60">
+          <FcGoogle className="text-lg" />
           Sign In with Google
         </button>
 
@@ -71,13 +72,13 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email Field */}
           <div>
-            <label className="block text-sm mb-1">Email</label>
+            <label className="block mb-1 font-semibold">*Email</label>
             <div className="relative">
               <input
                 type="email"
                 {...register("email", { required: "Email is required" })}
-                placeholder="Type here..."
-                className="input input-bordered w-full bg-surface text-text-light"
+                placeholder="Enter your email here..."
+                className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
               />
               {errors.email && (
                 <p className="text-red-500 text-sm mt-1">
@@ -89,13 +90,13 @@ const Login = () => {
 
           {/* Password Field */}
           <div>
-            <label className="block text-sm mb-1">Password</label>
+            <label className="block mb-1 font-semibold">*Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
                 {...register("password", { required: "Password is required" })}
                 placeholder="Enter your password"
-                className="input input-bordered w-full bg-surface text-text-light pr-10"
+                className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
               />
               {errors.password && (
                 <p className="text-red-500 text-sm mt-1">
@@ -112,12 +113,12 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-success w-full mt-2">
+          <button type="submit" className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold">
             {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>
-        <p className="text-center mt-6">
-          Don&apos;t have an account?{" "}
+        <p className="text-center mt-6 font-semibold">
+        No account?{" "}
           <Link to={"/register"} className="text-brand-primary">
             Sign Up
           </Link>{" "}
