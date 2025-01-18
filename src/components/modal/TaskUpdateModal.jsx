@@ -40,6 +40,7 @@ import toast from "react-hot-toast";
       }finally{
         setLoading(false)
         closeModal()
+        form.reset()
       }
     };
   
@@ -69,10 +70,10 @@ import toast from "react-hot-toast";
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <DialogPanel className="w-full max-w-xl transform overflow-hidden rounded-2xl bg-surface p-6 text-left align-middle shadow-xl transition-all">
                   <DialogTitle
                     as="h3"
-                    className="text-lg font-medium text-center leading-6 text-gray-900"
+                    className="text-lg font-medium text-center leading-6 text-white"
                   >
                     Update Task
                   </DialogTitle>
@@ -80,7 +81,7 @@ import toast from "react-hot-toast";
                     {/* Task Title */}
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text flex items-center">
+                        <span className="label-text flex items-center font-semibold text-white">
                           <FolderPenIcon className="mr-2" /> Task Title
                         </span>
                       </label>
@@ -89,7 +90,7 @@ import toast from "react-hot-toast";
                         name="task_title"
                         defaultValue={task_title}
                         placeholder="Enter Task Title"
-                        className="input input-bordered"
+                        className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
                         required
                       />
                     </div>
@@ -97,7 +98,7 @@ import toast from "react-hot-toast";
                     {/* Submission Info */}
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text flex items-center">
+                        <span className="label-text flex items-center font-semibold text-white">
                           <NotebookPenIcon className="mr-2" /> Submission Info
                         </span>
                       </label>
@@ -106,7 +107,7 @@ import toast from "react-hot-toast";
                         name="submission_info"
                         defaultValue={submission_info}
                         placeholder="Enter What to Submit"
-                        className="input input-bordered"
+                        className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
                         required
                       />
                     </div>
@@ -114,7 +115,7 @@ import toast from "react-hot-toast";
                     {/* Task Details */}
                     <div className="form-control">
                       <label className="label">
-                        <span className="label-text flex items-center">
+                        <span className="label-text flex items-center font-semibold text-white">
                           <NotebookPenIcon className="mr-2" /> Task Details
                         </span>
                       </label>
@@ -122,8 +123,9 @@ import toast from "react-hot-toast";
                         name="task_detail"
                         defaultValue={task_detail}
                         placeholder="Enter Task Details"
-                        className="textarea textarea-bordered h-24"
+                        className="textarea textarea-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
                         required
+                        rows={4}
                       ></textarea>
                     </div>
   
@@ -132,7 +134,7 @@ import toast from "react-hot-toast";
                       <button
                         type="submit"
                         disabled={loading}
-                        className="btn bg-primary-bg hover:bg-primary-bg/70 text-white"
+                        className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold"
                       >
                         {loading? "Updating..." : "Update"}
                       </button>

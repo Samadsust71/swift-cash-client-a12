@@ -7,10 +7,13 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
+import { FaDollarSign, FaUserEdit } from "react-icons/fa";
+import { MdOutlineTitle } from "react-icons/md";
+import { FcViewDetails } from "react-icons/fc";
 
 const BuyerHome = () => {
   const axiosSecure = useAxiosSecure();
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const { user } = useAuth();
   const {
@@ -40,13 +43,14 @@ const BuyerHome = () => {
   const handleApprove = (submissionInfo) => {
     const { _id, worker_email, payable_amount } = submissionInfo;
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to approve?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, accept the request!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No"
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -56,6 +60,7 @@ const BuyerHome = () => {
           });
           if (data) {
             Swal.fire({
+              background:'#1D1E30',
               title: "Approved",
               text: "You accept  the request.",
               icon: "success",
@@ -72,13 +77,14 @@ const BuyerHome = () => {
     const { _id, task_id } = submissionInfo;
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to reject?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Reject the offer!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No"
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -87,7 +93,8 @@ const BuyerHome = () => {
           });
           if (data) {
             Swal.fire({
-              title: "Reject",
+              background:'#1D1E30',
+              title: "Rejected",
               text: "You Reject the request.",
               icon: "success",
             });
@@ -100,26 +107,26 @@ const BuyerHome = () => {
     });
   };
   const openModal = (submissionInfo) => {
-    setSelectedSubmission(submissionInfo); // Set selected submission details
-    setIsModalOpen(true); // Open the modal
+    setSelectedSubmission(submissionInfo);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
   return (
-    <div className="mt-12">
+    <div className="">
       <BuyerStates buyerStat={buyerStat} />
-      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-6">
-          All Submissions for your Added Tasks
+      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-white">
+          All Submissions for Your Added Tasks
         </h2>
         <div className="divider"></div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto ">
           {allSUbmissions && allSUbmissions.length ? (
-            <table className="table">
+            <table className="table text-white">
               {/* head */}
-              <thead>
+              <thead className="bg-surface  text-brand-primary text-center">
                 <tr>
                   <th>Worker Name</th>
                   <th>Task Title</th>
@@ -128,16 +135,16 @@ const BuyerHome = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-center bg-surface">
                 {allSUbmissions.map((submissionInfo) => (
                   <tr key={submissionInfo?._id}>
                     <th>{submissionInfo?.worker_name}</th>
-                    <td>{submissionInfo?.task_title?.slice(0, 30)}...</td>
+                    <td>{submissionInfo?.task_title?.slice(0, 20)}</td>
                     <td>${submissionInfo?.payable_amount}</td>
                     <td>
                       <button
                         onClick={() => openModal(submissionInfo)}
-                        className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500"
+                        className="text-sm px-2 py-1 rounded-full text-brand-primary"
                       >
                         View Details
                       </button>
@@ -147,13 +154,13 @@ const BuyerHome = () => {
                       <div className="flex flex-col gap-1">
                         <button
                           onClick={() => handleApprove(submissionInfo)}
-                          className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500"
+                          className="text-sm bg-brand-primary/5 px-2 py-1 rounded-full text-brand-primary"
                         >
                           Approve
                         </button>
                         <button
                           onClick={() => handleReject(submissionInfo)}
-                          className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500"
+                          className="text-sm bg-red-200 px-2 py-1 rounded-full text-red-600"
                         >
                           Reject
                         </button>
@@ -178,34 +185,48 @@ const BuyerHome = () => {
         onClose={closeModal}
         className="fixed inset-0 flex items-center justify-center p-4 bg-black bg-opacity-50"
       >
-        <Dialog.Panel className="bg-white rounded-lg p-6 max-w-md w-full">
-          <Dialog.Title className="text-xl font-semibold">
+        <Dialog.Panel className="bg-surface rounded-lg p-6 max-w-xl w-full text-white">
+          <Dialog.Title className="text-xl font-semibold text-center">
             Submission Details
           </Dialog.Title>
           <div className="mt-4">
             {selectedSubmission && (
               <div>
-                <p>
-                  <strong>Worker Name:</strong> {selectedSubmission?.worker_name}
-                </p>
-                <p>
-                  <strong>Task Title:</strong> {selectedSubmission?.task_title}
-                </p>
-                <p>
-                  <strong>Payable Amount:</strong> $
-                  {selectedSubmission?.payable_amount}
-                </p>
-                <p>
-                  <strong>Submission Detais:</strong>{" "}
-                  {selectedSubmission?.submission_details}
-                </p>
+                <div className="flex items-center gap-1">
+                <FaUserEdit className="text-xl text-brand-primary" />
+                  <span>
+                     Worker Name :
+                  </span>{" "}
+                  <span>{selectedSubmission?.worker_name}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                <MdOutlineTitle  className="text-xl text-brand-primary" />
+                  <span>
+                  Task Title :
+                  </span>{" "}
+                  <span>{selectedSubmission?.task_title}</span>
+                </div>
+                <div className="flex items-center gap-1">
+                <FaDollarSign className="text-brand-primary" />
+                  <span>
+                  Payable Amount :
+                  </span>{" "}
+                  <span>{selectedSubmission?.payable_amount}</span>
+                </div>
+                <div className="flex items-center gap-1 flex-wrap">
+                <FcViewDetails className="text-brand-primary" />
+                  <span>
+                  Submission Detais :
+                  </span>{" "}
+                  <p>{selectedSubmission?.submission_details}</p>
+                </div>
               </div>
             )}
           </div>
-          <div className="mt-4 flex justify-end">
+          <div className="mt-4 flex justify-center">
             <button
               onClick={closeModal}
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-gradient-to-t to-brand-primary/40 from-surface/90 px-4 py-2 rounded-lg hover:scale-105 transition-all duration-300"
             >
               Close
             </button>

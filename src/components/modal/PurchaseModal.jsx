@@ -45,22 +45,22 @@ const PurchaseModal = ({ closeModal, isOpen,coinPackage}) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-surface p-6 text-left align-middle shadow-xl transition-all">
                 <DialogTitle
                   as="h3"
-                  className="text-lg font-medium text-center leading-6 text-gray-900"
+                  className="text-lg font-medium text-center leading-6 text-white"
                 >
                   Review Info Before Purchase Coin
                 </DialogTitle>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Buyer:{user?.displayName || ""}</p>
+                <div className="mt-2 text-center">
+                  <p className="text-sm text-white">Name : {user?.displayName || ""}</p>
                 </div>
 
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Price:{coinPackage?.price || 0} $ </p>
+                <div className="mt-2 text-center">
+                  <p className="text-sm text-white">Price : ${coinPackage?.price || 0} </p>
                 </div>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">Coins:{coinPackage?.coins || 0}</p>
+                <div className="mt-2 text-center">
+                  <p className="text-sm text-white">Coins : {coinPackage?.coins || 0}</p>
                 </div>
 
                 {/* CheckoutForm */}

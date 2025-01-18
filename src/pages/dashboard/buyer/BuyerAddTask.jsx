@@ -4,10 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   CalendarDaysIcon,
+  CaptionsIcon,
+  CircleDollarSignIcon,
   FolderPenIcon,
-  Images,
+  Image,
   NotebookPenIcon,
-  SaladIcon,
+  User,
 } from "lucide-react";
 import { imageUpload } from "../../../api/utils";
 import useRole from "../../../hooks/useRole";
@@ -68,14 +70,14 @@ const BuyerAddTask = () => {
         {/* Task Title */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
-              <FolderPenIcon className="mr-2" /> Task Title
+            <span className="label-text flex items-center text-white">
+              <CaptionsIcon className="mr-2" /> Task Title
             </span>
           </label>
           <input
             type="text"
             placeholder="Enter Task Title"
-            className="input input-bordered"
+            className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
             {...register("task_title", { required: "Task title is required" })}
           />
           {errors.task_title && (
@@ -86,14 +88,14 @@ const BuyerAddTask = () => {
         {/* Required Workers */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
-              <SaladIcon className="mr-2" /> Required Workers
+            <span className="label-text flex items-center text-white">
+              <User className="mr-2" /> Required Workers
             </span>
           </label>
           <input
             type="number"
             placeholder="Enter Required Workers"
-            className="input input-bordered"
+            className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
             {...register("required_workers", {
               required: "Required workers is required",
               valueAsNumber: true,
@@ -108,14 +110,14 @@ const BuyerAddTask = () => {
         {/* Payable Amount */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
-              <Images className="mr-2" /> Payable Amount
+            <span className="label-text flex items-center text-white">
+              <CircleDollarSignIcon className="mr-2" /> Payable Amount
             </span>
           </label>
           <input
             type="number"
             placeholder="Enter Payable Amount"
-            className="input input-bordered"
+            className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
             {...register("payable_amount", {
               required: "Payable amount is required",
               valueAsNumber: true,
@@ -130,7 +132,7 @@ const BuyerAddTask = () => {
         {/* Deadline */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
+            <span className="label-text flex items-center text-white">
               <CalendarDaysIcon className="mr-2" /> Deadline
             </span>
           </label>
@@ -151,14 +153,14 @@ const BuyerAddTask = () => {
         {/* Submission Info */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
-              <NotebookPenIcon className="mr-2" /> Submission Info
+            <span className="label-text flex items-center text-white">
+              <FolderPenIcon className="mr-2" /> Submission Info
             </span>
           </label>
           <input
             type="text"
             placeholder="Enter What to Submit"
-            className="input input-bordered"
+            className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
             {...register("submission_info", { required: "Submission info is required" })}
           />
           {errors.submission_info && (
@@ -169,16 +171,16 @@ const BuyerAddTask = () => {
         {/* Task Image */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
-              <NotebookPenIcon className="mr-2" /> Task Image
+            <span className="label-text flex items-center text-white">
+              <Image className="mr-2" /> Task Image
             </span>
           </label>
           <input
             type="file"
-            className="file-input file-input-bordered w-full"
+            className="file-input file-input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
             {...register("task_image",{ required: "Image is required" })}
           />
-          {errors.task_image && (
+          {errors?.task_image && (
             <p className="text-red-500 text-sm mt-1">{errors.task_image.message}</p>
           )}
         </div>
@@ -186,16 +188,17 @@ const BuyerAddTask = () => {
         {/* Task Details */}
         <div className="form-control">
           <label className="label">
-            <span className="label-text flex items-center">
+            <span className="label-text flex items-center text-white">
               <NotebookPenIcon className="mr-2" /> Task Details
             </span>
           </label>
           <textarea
             placeholder="Enter Task Details"
-            className="textarea textarea-bordered h-24"
+            className="textarea textarea-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
+            rows={4}
             {...register("task_detail", { required: "Task details are required" })}
           ></textarea>
-          {errors.task_detail && (
+          {errors?.task_detail && (
             <p className="text-red-500 text-sm mt-1">{errors.task_detail.message}</p>
           )}
         </div>
@@ -205,7 +208,7 @@ const BuyerAddTask = () => {
           <button
             type="submit"
             disabled={isPending}
-            className="btn bg-primary-bg hover:bg-primary-bg/70 text-white"
+            className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold"
           >
             {isPending?"Adding":"Add Task"}
           </button>

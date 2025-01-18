@@ -11,6 +11,7 @@ import { useState } from "react";
 
 
 
+
 const BuyerTasks = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -36,20 +37,22 @@ const BuyerTasks = () => {
  
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to delete?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No",
     }).then(async (result) => {
       if (result.isConfirmed) {
         const { data } = await axiosSecure.delete(`/tasks/${id}`);
         if (data.deletedCount) {
           Swal.fire({
-            title: "Deleted!",
-            text: "Your task has been deleted.",
+            background:'#1D1E30',
+            title: "Deleted",
+            text: "You delete the task.",
             icon: "success",
           });
           queryClient.invalidateQueries(["my-tasks"]);
@@ -75,24 +78,24 @@ const BuyerTasks = () => {
   
     
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-11/12 mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-6">Added Tasks</h2>
+    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-white">Added Tasks</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
         {myTasks && myTasks.length ? (
-          <table className="table">
+          <table className="table text-white">
             {/* head */}
-            <thead>
+            <thead className="bg-surface text-brand-primary text-center">
               <tr>
                 
                 <th>Task</th>
                 <th>Required Workers</th>
                 <th>Deadline</th>
-                <th></th>
+                <th ></th>
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center bg-surface">
               {myTasks.map((task) => (
                 <tr key={task?._id}>
                   
@@ -102,7 +105,7 @@ const BuyerTasks = () => {
                   
                   <td>
                   <button
-                      className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500"
+                      className="text-sm bg-brand-primary/5 px-2 py-1 rounded-full text-brand-primary"
                       onClick={() => openModal(task)}
                     >
                       Update
@@ -110,10 +113,10 @@ const BuyerTasks = () => {
                   </td>
                   <td>
                     <button
-                      className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500"
+                      className="text-sm bg-red-200 px-2 py-1 rounded-full text-red-600"
                       onClick={() => handleDelete(task?._id)}
                     >
-                      delete
+                      Delete
                     </button>
                   </td>
                 </tr>

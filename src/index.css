@@ -9,7 +9,9 @@ body{
     /* background-color: #171827; */
     overflow-y: auto;
 }
-
+.swall-title{
+  color: white;
+}
 @layer utilities {
     /* Act as a border */
     .card-wrapper {
