@@ -1,30 +1,31 @@
 import  { useEffect, useState } from "react";
 import { FaQuoteLeft, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import Heading from "./shared/Heading";
 
 const testimonials = [
   {
     name: "Emily Parker",
-    position: "CEO at Elegance Boutique",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    position: "Worker",
+    image: "https://i.ibb.co.com/WcSVZb9/placeholder02.png",
     feedback:
-      "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+      "Working on this platform has been an amazing experience. The tasks are well-organized, and the payment system is seamless, ensuring I get rewarded for my efforts on time. I appreciate the transparency and support provided by the team whenever I face an issue.",
     rating: 4,
   },
   {
-    name: "John Doe",
-    position: "Manager at Success Corp",
-    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    name: "Ana De Armas",
+    position: "Buyer",
+    image: "https://i.ibb.co.com/HFhPYPC/ana-de-armas.jpg",
     feedback:
-      "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+      "This website has provided me with countless opportunities to showcase my skills and earn steadily. The user-friendly interface makes it easy to find tasks, and I love how disputes are handled fairly and professionally. Highly recommended for freelancers looking for a reliable platform.",
     rating: 5,
   },
   {
-    name: "Sophia Lee",
-    position: "Founder at Bright Ideas",
-    image: "https://workreap.amentotech.com/wp-content/uploads/2024/04/placeholder02.png",
+    name: "Samad Reza",
+    position: "Worker",
+    image: "https://i.ibb.co.com/FsSWTFp/my-image.jpg",
     feedback:
-      "I couldn't be happier with the incredible service I received! The team went above and beyond to cater to my needs, displaying a level of professionalism and expertise that truly impressed me.",
+      "I have been using this platform for months, and it has consistently exceeded my expectations. The quality of work delivered by the workers is exceptional, and the interface makes it simple to manage my tasks efficiently. It’s a trustworthy space to get your projects done quickly and professionally.",
     rating: 5,
   },
 ];
@@ -49,9 +50,11 @@ const Testimonial = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center bg-bg-main p-6 rounded-lg shadow-lg">
+    <div>
+      <Heading heading={'What Our Clients Say'} subHeading={'Hear from buyers and satisfied workers about their experiences with us. Our dedication to excellence speaks through their stories.'} />
+      <div className="flex flex-col lg:flex-row items-center justify-center bg-bg-main p-6 rounded-lg shadow-lg">
       <div className="flex-1 flex justify-center items-center relative">
-        <div className="w-[100%] h-80 rounded-lg overflow-hidden">
+        <div className="w-[100%] h-[500px] rounded-lg overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.img
               key={testimonials[currentIndex].image}
@@ -61,7 +64,7 @@ const Testimonial = () => {
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5,ease:"easeInOut" }}
             />
           </AnimatePresence>
         </div>
@@ -75,9 +78,9 @@ const Testimonial = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5 , ease:"easeInOut"}}
           >
-            <p className="text-white/70 mb-4">
+            <p className="text-white mb-4">
               {testimonials[currentIndex].feedback}
             </p>
             <div className="flex items-center space-x-2">
@@ -88,7 +91,7 @@ const Testimonial = () => {
             <h4 className="text-brand-primary font-bold mt-2">
               {testimonials[currentIndex].name}
             </h4>
-            <p className="text-gray-500">{testimonials[currentIndex].position}</p>
+            <p className="text-text-muted text-sm">{testimonials[currentIndex].position}</p>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -107,6 +110,7 @@ const Testimonial = () => {
           <FaChevronRight />
         </button>
       </div>
+    </div>
     </div>
   );
 };

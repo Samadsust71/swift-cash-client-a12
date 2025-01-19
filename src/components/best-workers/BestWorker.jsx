@@ -2,6 +2,8 @@ import axios from "axios";
 import Loading from "../Loading";
 import { useQuery } from "@tanstack/react-query";
 import BestWorkerCard from "./BestWorkerCard";
+import Heading from "../shared/Heading";
+
 
 
 const BestWorker = () => {
@@ -26,6 +28,7 @@ const BestWorker = () => {
       
   return (
    <div className="container mx-auto">
+    <Heading heading={'Top Performers on Swift Cash'} subHeading={'Meet the best workers who consistently deliver exceptional results, setting benchmarks of excellence and reliability in their tasks.'} />
      <div className="grid  gap-4 grid-cols-2 lg:grid-cols-4 ">
       {
         bestWorkers.map((worker) => <BestWorkerCard worker={worker} key={worker?._id}/>)

@@ -1,10 +1,13 @@
 
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const TrustSection = () => {
+  const navigate = useNavigate()
   return (
-    <div className="flex flex-col md:flex-row  text-white rounded-md">
+    <div className="flex flex-col lg:flex-row  text-white">
       {/* Left Section */}
-      <div className="flex-1 p-8 flex flex-col justify-center bg-surface rounded-md">
+      <div className="flex-1 p-8 flex flex-col justify-center bg-gradient-to-t to-brand-primary/20 from-surface rounded-l-lg ">
         <h2 className="text-4xl font-bold mb-4">
           Global Trust of <span className="text-5xl">1 Million</span> Businesses and Counting
         </h2>
@@ -25,15 +28,26 @@ const TrustSection = () => {
             <span className="mr-2 text-green-400">✔</span> Join us redefine your work experience
           </li>
         </ul>
-        <button className="bg-white text-brand-primary px-6 py-2 rounded-lg shadow-md hover:bg-gray-200">
-          Get Started
-        </button>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileHover={{ opacity: 1, y: 5 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full"
+          onClick={()=>navigate('/register')}
+        >
+          <motion.button
+            className="bg-[#17413E] shadow-brand-primary/10 shadow-inner  px-4 py-2 rounded-lg text-sm font-medium"
+            whileTap={{ scale: 0.9 }}
+          >
+            Get Started
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* Right Section */}
       <div className="flex-1 relative">
-        <img className="w-full h-full object-cover rounded-lg"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT5GgRclb79Khei1TqnaWs5Txph5bD4AWOAab9sDyBV3oTdeYOxguF_e2H3mEZ7b92o2U&usqp=CAU"alt="" />
+        <img className="w-full h-full object-cover rounded-r-lg"
+          src="https://i.ibb.co.com/BGd8wWB/freepik-export-20250119044945-YVz6.jpg"alt="people using SWift Cash" />
       </div>
     </div>
   );

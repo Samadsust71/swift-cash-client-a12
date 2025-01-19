@@ -2,13 +2,15 @@ import { FaHandHoldingUsd, FaMoneyBillWave, FaGift } from "react-icons/fa";
 
 const FeaturesSection = () => {
   return (
-    <div className=" text-white py-10">
-      {/* Heading */}
-      <h2 className="text-center text-2xl md:text-3xl font-bold">
+    <div>
+      <div className="flex flex-col justify-center items-center mb-6">
+        {/* Heading */}
+      <h2 className="text-center text-2xl md:text-3xl font-bold text-white">
         We&apos;re the <span className="text-brand-primary">#1</span> site to make money.
         <span className="text-brand-primary"> Here’s why</span>
       </h2>
-
+      </div>
+      <div className=" text-white ">
       {/* Features Grid */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Feature 1 */}
@@ -38,6 +40,7 @@ const FeaturesSection = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

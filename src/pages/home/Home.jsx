@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <div className="container mx-auto space-y-10 mt-10">
+      <div className="container mx-auto space-y-20 mt-20">
         <StatsSection />
         <BestWorker />
         <CashoutSection />

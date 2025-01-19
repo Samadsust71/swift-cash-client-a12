@@ -4,6 +4,7 @@ import { FaAmazonPay, FaCcApplePay, FaCcVisa} from "react-icons/fa";
 import { FaLitecoinSign } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { LuBitcoin } from "react-icons/lu";
+import Heading from "../shared/Heading";
 
 const methods = [
   { name: "Litecoin", icon: <FaLitecoinSign /> }, 
@@ -22,8 +23,8 @@ const glowEffect = `
 
 const CashoutSection = () => {
   return (
-    <div className=" py-10 ">
-      <h2 className="text-white text-center text-2xl font-bold mb-8">Cashout via</h2>
+    <div className="">
+      <Heading heading={'Effortless Cashouts, Your Way'} subHeading={'Choose from a variety of secure payment methods, including Visa, Google Pay, Bitcoin, and more. Swift and seamless transactions at your fingertips'}/>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 justify-items-center">
         {methods.map((method, index) => (
           <motion.div
