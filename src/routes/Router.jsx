@@ -22,11 +22,13 @@ import AdminRoute from "./AdminRoute";
 import BuyerRoute from "./BuyerRoute";
 import TaskDetails from "../pages/dashboard/worker/TaskDetails";
 import WorkerRoute from "./WorkerRoute";
+import ErrorPage from "../pages/error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",

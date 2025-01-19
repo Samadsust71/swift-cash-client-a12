@@ -30,6 +30,7 @@ const Login = () => {
       .catch(() => {
         toast.error("Invalid Email or Password");
         setLoading(false);
+        reset()
       });
   };
   const togglePasswordVisibility = () => {
@@ -49,12 +50,14 @@ const Login = () => {
         timestamp: new Date().getTime(),
       };
       axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
-      toast.success("Login Successfull !!!")
+      toast.success("Login Successful!!!")
       navigate( "/");
+      
     })
     .catch((err) => {
       setLoading(false)
-      toast.error(err.message)
+      toast.error(err?.message)
+      
     });
 }
   return (

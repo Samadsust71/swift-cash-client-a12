@@ -14,6 +14,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
   const navigate = useNavigate();
@@ -45,11 +46,13 @@ const Register = () => {
         toast.success("Registration Succesfull!!!");
         navigate("/");
         setLoading(false);
+        reset()
       })
       .catch((error) => {
         toast.error("Email already in use");
         setLoading(false);
-        console.log(error.message);
+        reset()
+        console.log(error?.message);
       });
   };
 

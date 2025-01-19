@@ -17,7 +17,22 @@ createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
-        <Toaster />
+        <Toaster toastOptions={
+          {
+            success:{
+              style:{
+                background:"#1E333C",
+                color: "white"
+              }
+            },
+            error:{
+              style:{
+                background:"#1E333C",
+                color: "white"
+              }
+            }
+          }
+        } />
       </AuthProvider>
     </QueryClientProvider>
   </StrictMode>
