@@ -5,7 +5,7 @@ const FeaturesSection = () => {
     <div>
       <div className="flex flex-col justify-center items-center mb-6">
         {/* Heading */}
-      <h2 className="text-center text-2xl md:text-3xl font-bold text-white">
+      <h2 className="text-2xl lg:text-4xl text-white font-bold text-center">
         We&apos;re the <span className="text-brand-primary">#1</span> site to make money.
         <span className="text-brand-primary"> Here’s why</span>
       </h2>

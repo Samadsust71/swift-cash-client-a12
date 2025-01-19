@@ -29,7 +29,7 @@ const BestWorker = () => {
   return (
    <div className="container mx-auto">
     <Heading heading={'Top Performers on Swift Cash'} subHeading={'Meet the best workers who consistently deliver exceptional results, setting benchmarks of excellence and reliability in their tasks.'} />
-     <div className="grid  gap-4 grid-cols-2 lg:grid-cols-4 ">
+     <div className="grid  gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
       {
         bestWorkers.map((worker) => <BestWorkerCard worker={worker} key={worker?._id}/>)
       }

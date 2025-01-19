@@ -15,7 +15,7 @@ body{
 @layer utilities {
     /* Act as a border */
     .card-wrapper {
-      @apply relative overflow-hidden rounded-2xl bg-gradient-to-b from-slate-700 to-slate-800;
+      @apply relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#17413E] to-[#1E333C];
     }
   
     /* Gradient */
