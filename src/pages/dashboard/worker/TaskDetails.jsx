@@ -5,13 +5,14 @@ import Loading from "../../../components/Loading";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import { format } from "date-fns";
 
 const TaskDetails = () => {
   const { id } = useParams();
   const [submissionDetails, setSubmissionDetails] = useState("");
-  const {user} = useAuth()
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const {
     data: taskDetails,
     isLoading,
@@ -27,13 +28,13 @@ const TaskDetails = () => {
   if (isError) console.log(isError);
 
   const {
-    
+    task_image_url,
     task_title,
-    
+    required_workers,
     task_detail,
-    
+    deadline,
     payable_amount,
-    
+
     buyer,
   } = taskDetails || {};
 
@@ -53,69 +54,97 @@ const TaskDetails = () => {
       current_date: new Date(),
       status: "pending",
     };
-    setLoading(true)
+    setLoading(true);
     try {
-      const {data} = await axiosSecure.post("/submissions", submissionData);
-      if(data?.insertedId){
-        toast.success("Request send succesfully")
+      const { data } = await axiosSecure.post("/submissions", submissionData);
+      if (data?.insertedId) {
+        toast.success("Request send succesfully");
       }
     } catch (error) {
       console.error("Error submitting data:", error);
       toast.error("Failed to save the submission.");
-    }finally{
-      setSubmissionDetails("")
-      setLoading(false)
+    } finally {
+      setSubmissionDetails("");
+      setLoading(false);
     }
   };
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-bg-main rounded-lg shadow-md text-white">
-      <h1 className="text-2xl font-bold mb-4">Task Details</h1>
+    <div className="p-6 bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden">
+      <h1 className="text-2xl font-bold mb-4 text-center">Task Details</h1>
 
-      <div className="mb-6">
-        <p>
-          <strong>Title:</strong> {task_title}
-        </p>
-        <p>
-          <strong>Description:</strong> {task_detail}
-        </p>
-        <p>
-          <strong>Payable Amount:</strong> ${payable_amount}
-        </p>
-        <p>
-          <strong>Buyer Name:</strong> {buyer?.name || "N/A"}
-        </p>
-        <p>
-          <strong>Buyer Email:</strong> {buyer?.email}
-        </p>
-      </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label
-            htmlFor="submissionDetails"
-            className="block text-sm font-medium"
-          >
-            Submission Details
-          </label>
-          <textarea
-            id="submissionDetails"
-            rows="4"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-            placeholder="Enter your submission details..."
-            value={submissionDetails}
-            onChange={(e) => setSubmissionDetails(e.target.value)}
-            required
-          ></textarea>
+      <div className="flex flex-col lg:items-center lg:flex-row gap-6">
+        {/* details  */}
+        <div className=" flex flex-col w-full lg:w-[50%]">
+          {/* Image Section */}
+          <div>
+            <img
+              src={task_image_url}
+              alt={task_title}
+              className="w-full h-40 object-cover rounded-xl"
+            />
+          </div>
+          {/* Content Section */}
+
+          <div className="flex items-center justify-between flex-wrap  mt-2">
+            <div className="flex items-center bg-brand-primary/10 text-brand-primary px-2 py-1 text-xs  rounded-full w-fit">
+              <span>Vacancy:</span>
+              <span className=" ">{required_workers}</span>
+            </div>
+            <div className="flex items-center bg-brand-primary/10 text-brand-primary px-3 py-1 text-xs  rounded-full w-fit">
+              <span>Coins:</span>
+              <span className=" ">{payable_amount}</span>
+            </div>
+          </div>
+            
+          <div className="flex-grow space-y-2 mt-2">
+            <h3 className="text-lg font-semibold">
+              {task_title}
+            </h3>
+            <div className=" text-text-muted">{task_detail}</div>
+            <div className="flex items-center gap-2 w-fit text-sm text-gray-400">
+              <span>Buyer:</span>
+              <span className=" ">{buyer?.name || "N/A"}</span>
+            </div>
+            <div className=" flex items-center gap-2 text-sm text-gray-400">
+              <span>Deadline:</span>
+              <span>{format(new Date(deadline), "dd-MM-yyyy")}</span>
+            </div>
+          </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          {loading?"Submitting...":"Submit"}
-        </button>
-      </form>
+        {/* form field */}
+        <div className="lg:w-1/2 space-y-4">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label
+                htmlFor="submissionDetails"
+                className="block text-xl font-medium mb-6"
+              >
+                Submission Details
+              </label>
+              <textarea
+                id="submissionDetails"
+                rows="4"
+                className="textarea textarea-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm max-h-52 min-h-52"
+                placeholder="Enter your submission details..."
+                value={submissionDetails}
+                
+                onChange={(e) => setSubmissionDetails(e.target.value)}
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="bg-[#17413E] shadow-brand-primary/10 shadow-inner  px-4 py-2 rounded-lg text-sm font-medium hover:scale-105 transition duration-300"
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
