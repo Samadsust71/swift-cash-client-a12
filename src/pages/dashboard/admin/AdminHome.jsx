@@ -27,13 +27,14 @@ const AdminHome = () => {
   const handleUpdate= (request)=>{
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to proceed?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, proccess the payment!"
+      confirmButtonText: "Yes",
+      cancelButtonText:"No"
     }).then(async(result) => {
       if (result.isConfirmed) {
          
@@ -41,9 +42,10 @@ const AdminHome = () => {
           const {data} = await axiosSecure.patch(`/withdrawals-request/${request?._id}`,request)
           if(data?.modifiedCount){
             Swal.fire({
-              title: "Payment Succesfull",
-              text: "Your file has been deleted.",
-              icon: "success"
+              background:'#1D1E30',
+              text: "Payment Successful!!!",
+              icon: "success",
+              confirmButtonColor: "#1E333C",
             });
             refetch()
           }
@@ -62,14 +64,14 @@ const AdminHome = () => {
     <div>
       <AdminStates adminInfo={adminInfo} />
 
-      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-        <h2 className="text-3xl font-semibold text-center mb-6">Withdrawals Request</h2>
+      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+        <h2 className="text-3xl font-semibold text-center mb-6 text-white"> All Withdrawals Request</h2>
         <div className="divider"></div>
         <div className="overflow-x-auto">
           {withdrawRequests && withdrawRequests.length ? (
-            <table className="table">
+            <table className="table text-white">
               {/* head */}
-              <thead>
+              <thead className="bg-surface  text-brand-primary text-center">
                 <tr>
                   <th>Worker Name</th>
                   <th>Payment Method</th>
@@ -79,7 +81,7 @@ const AdminHome = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-center bg-surface">
                 {withdrawRequests.map((request) => (
                   <tr key={request?._id}>
                     <th>{request?.worker_name}</th>
@@ -88,12 +90,12 @@ const AdminHome = () => {
                     <td>{request?.withdrawal_coin}</td>
 
                     <td>
-                      <button className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500">
+                      <span className="text-sm bg-red-200 px-2 py-1 rounded-full text-red-600">
                         {request?.status}
-                      </button>
+                      </span>
                     </td>
                     <td>
-                      <button onClick={()=>handleUpdate(request)} className="text-sm bg-green-100 px-2 py-1 rounded-full text-green-500">
+                      <button onClick={()=>handleUpdate(request)} className="text-sm bg-brand-primary/5 px-2 py-1 rounded-full text-brand-primary hover:scale-105">
                         Payment Success
                       </button>
                     </td>
@@ -102,7 +104,7 @@ const AdminHome = () => {
               </tbody>
             </table>
           ) : (
-            <div className="flex justify-center items-center my-5">
+            <div className="flex justify-center items-center text-white my-5">
               <p className="text-center">No Withdrawals Request</p>
             </div>
           )}

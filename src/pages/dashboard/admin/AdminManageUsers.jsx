@@ -25,21 +25,22 @@ const AdminManageUsers = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to remove?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete the user!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.delete(`/all-users/${id}`);
           if (data?.deletedCount) {
             Swal.fire({
-              title: "User Deleted",
-              text: "Your user has been deleted.",
+              background:'#1D1E30',
+              title: "removed",
               icon: "success",
             });
             refetch();
@@ -55,22 +56,24 @@ const AdminManageUsers = () => {
     e.preventDefault();
     const role = e.target.role.value;
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to update the role?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, update the user!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.patch(`/update-role/${id}`,{role});
           if (data?.modifiedCount) {
             Swal.fire({
-              title: "User updated",
-              text: "Your user has been updated.",
+              background:'#1D1E30',
+              title: "Updated",
               icon: "success",
+              confirmButtonColor: "#1E333C",
             });
             refetch();
           }
@@ -81,14 +84,14 @@ const AdminManageUsers = () => {
     });
   };
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-6">All Users</h2>
+    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-white">All Users</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
         {allUser && allUser.length ? (
-          <table className="table">
+          <table className="table text-white">
             {/* head */}
-            <thead>
+            <thead className="bg-surface text-brand-primary text-center">
               <tr>
                 <th>Image</th>
                 <th>Name</th>
@@ -96,10 +99,10 @@ const AdminManageUsers = () => {
                 <th>Role</th>
                 <th>Coin</th>
                 <th>Action</th>
-                <th>Action</th>
+                <th>Update</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center bg-surface">
               {allUser.map((user) => (
                 <tr key={user?._id}>
                   <td>
@@ -117,16 +120,13 @@ const AdminManageUsers = () => {
                   <td>
                     <button
                       onClick={() => handleDelete(user?._id)}
-                      className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500"
+                      className="text-sm bg-red-200 px-2 py-1 rounded-full text-red-600 hover:scale-105"
                     >
                       Remove
                     </button>
                   </td>
                   <td>
                     <label className="form-control w-full max-w-40">
-                      <div className="label">
-                        <span className="label-text">Update Role</span>
-                      </div>
                       <form
                         onSubmit={(e) => handleSubmit(e, user?._id)}
                         className="flex items-center gap-1"
@@ -135,7 +135,7 @@ const AdminManageUsers = () => {
                           required
                           name="role"
                           defaultValue={user && user?.role}
-                          className="p-2 rounded-md border outline-none border-brand-primary"
+                          className="select select-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm select-sm"
                         >
                           <option value="Worker">Worker</option>
                           <option value="Buyer">Buyer</option>
@@ -143,7 +143,7 @@ const AdminManageUsers = () => {
                         </select>
                         <button
                           type="submit"
-                          className="px-1 py-2 rounded-md bg-brand-primary text-white"
+                          className="btn bg-brand-primary text-gray-900  hover:bg-brand-primary/80 outline-none border-none font-semibold btn-xs"
                         >
                           Update
                         </button>

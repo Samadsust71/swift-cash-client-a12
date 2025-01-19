@@ -94,9 +94,9 @@ const BuyerHome = () => {
           if (data) {
             Swal.fire({
               background:'#1D1E30',
-              title: "Rejected",
               text: "You Reject the request.",
               icon: "success",
+              confirmButtonColor: "#1E333C",
             });
             refetch();
           }

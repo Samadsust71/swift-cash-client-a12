@@ -12,10 +12,10 @@ const AdminStates = ({adminInfo}) => {
         totalWorkers
     } = adminInfo || {}
   return (
-    <div className="mb-12 grid gap-y-10 gap-x-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 flex-grow">
+    <div className="grid gap-6 grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
       {/*Total Worker */}
-      <div className=" bg-bg-main">
-        <div className="relative flex flex-col bg-clip-border rounded-xl  text-white  shadow-md ">
+      <div className="">
+        <div className="relative flex flex-col bg-clip-border rounded-xl  text-white  shadow-md bg-surface">
           <div
             className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute mt-2 grid h-16 w-16 place-items-center from-orange-600 to-orange-400 text-white shadow-orange-500/40`}
           >
@@ -32,8 +32,8 @@ const AdminStates = ({adminInfo}) => {
         </div>
       </div>
       {/* total buyer */}
-      <div className=" bg-bg-main">
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-bg-main text-white  shadow-md ">
+      <div className="">
+        <div className="relative flex flex-col bg-clip-border rounded-xl  text-white  shadow-md bg-surface">
           <div
             className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute mt-2 grid h-16 w-16 place-items-center from-blue-600 to-blue-400 text-white shadow-blue-500/40`}
           >
@@ -50,8 +50,8 @@ const AdminStates = ({adminInfo}) => {
         </div>
       </div>
       {/* Total Coins */}
-      <div className=" bg-bg-main">
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-bg-main text-white shadow-md ">
+      <div className="">
+        <div className="relative flex flex-col bg-clip-border rounded-xl  text-white  shadow-md bg-surface">
           <div
             className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute mt-2 grid h-16 w-16 place-items-center from-pink-600 to-pink-400 text-white shadow-pink-500/40`}
           >
@@ -68,8 +68,8 @@ const AdminStates = ({adminInfo}) => {
         </div>
       </div>
       {/* total payments */}
-      <div className=" bg-bg-main">
-        <div className="relative flex flex-col bg-clip-border rounded-xl bg-bg-main text-white shadow-md ">
+      <div className="">
+        <div className="relative flex flex-col bg-clip-border rounded-xl  text-white  shadow-md bg-surface">
           <div
             className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute mt-2 grid h-16 w-16 place-items-center from-green-600 to-green-400 text-white shadow-green-500/40`}
           >

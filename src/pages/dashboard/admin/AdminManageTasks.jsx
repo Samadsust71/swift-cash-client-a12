@@ -24,22 +24,24 @@ const AdminManageTasks = () => {
   const handleTaskDelete = (id)=>{
    
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Are you sure you want to delete?",
       icon: "warning",
+      background:'#1D1E30',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#1E333C",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete the task!",
+      confirmButtonText: "Yes",
+      cancelButtonText:"No",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.delete(`/all-tasks/${id}`);
           if (data?.deletedCount) {
             Swal.fire({
-              title: "Task Deleted",
-              text: "The task has been deleted.",
-              icon: "success",
+            background:'#1D1E30',
+            title: "Deleted",
+            text: "You delete the task.",
+            icon: "success",
             });
             refetch();
           }
@@ -50,14 +52,14 @@ const AdminManageTasks = () => {
     });
   }
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto">
-      <h2 className="text-3xl font-semibold text-center mb-6">All Tasks</h2>
+    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+      <h2 className="text-3xl font-semibold text-center mb-6 text-white">All Tasks</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
         {allTasks && allTasks.length ? (
-          <table className="table">
+          <table className="table text-white">
             {/* head */}
-            <thead>
+            <thead className="bg-surface text-brand-primary text-center">
               <tr>
                 <th>Title</th>
                 <th>Required Worker</th>
@@ -67,16 +69,16 @@ const AdminManageTasks = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center bg-surface">
               {allTasks.map((task) => (
                 <tr key={task?._id}>
-                  <td>{task?.task_title?.slice(0, 30)}...</td>
+                  <td>{task?.task_title?.slice(0, 30)}</td>
                   <td>{task?.required_workers}</td>
                   <td>{task?.payable_amount}</td>
                   <td>{task?.buyer?.name || "N/A"}</td>
                   <td>{task?.buyer?.email}</td>
                   <td>
-                    <button onClick={()=>handleTaskDelete(task?._id)} className="text-sm bg-red-100 px-2 py-1 rounded-full text-red-500">
+                    <button onClick={()=>handleTaskDelete(task?._id)} className="text-sm bg-red-200 px-2 py-1 rounded-full text-red-600 hover:scale-105">
                       Delete
                     </button>
                   </td>
@@ -85,8 +87,8 @@ const AdminManageTasks = () => {
             </tbody>
           </table>
         ) : (
-          <div className="flex justify-center items-center my-5">
-            <p className="text-center">No Withdrawals Request</p>
+          <div className="flex justify-center items-center  my-5">
+            <p className="text-center text-white">No Withdrawals Request</p>
           </div>
         )}
       </div>
