@@ -68,7 +68,7 @@ const AdminManageUsers = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosSecure.patch(`/update-role/${id}`,{role});
-          if (data?.modifiedCount) {
+          if (data) {
             Swal.fire({
               background:'#1D1E30',
               title: "Updated",
@@ -84,7 +84,7 @@ const AdminManageUsers = () => {
     });
   };
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+    <div className="p-6  rounded-lg shadow-lg  w-full mx-auto bg-bg-main">
       <h2 className="text-3xl font-semibold text-center mb-6 text-white">All Users</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">

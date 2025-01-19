@@ -26,6 +26,7 @@ const BuyerAddTask = () => {
     control,
     register,
     formState: { errors },
+    reset
   } = useForm();
    const axiosSecure = useAxiosSecure()
   const { isPending, mutateAsync } = useMutation({
@@ -36,7 +37,7 @@ const BuyerAddTask = () => {
       toast.success(
         "Your task has been added successfully!"
       );
-      
+      reset()
     },
     onError: () => {
       toast.error(

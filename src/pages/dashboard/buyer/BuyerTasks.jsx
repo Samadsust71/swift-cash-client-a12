@@ -78,7 +78,7 @@ const BuyerTasks = () => {
   
     
   return (
-    <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+    <div className="p-6  rounded-lg shadow-lg  w-full mx-auto bg-bg-main">
       <h2 className="text-3xl font-semibold text-center mb-6 text-white">Added Tasks</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
