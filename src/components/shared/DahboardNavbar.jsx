@@ -102,7 +102,7 @@ const DahboardNavbar = () => {
         </div>
 
         {/* notification indicator */}
-       <Notifications/>
+       <Notifications userEmail ={user?.email}/>
       </div>
     </div>
     </div>
