@@ -46,13 +46,7 @@ const Navbar = () => {
                 : "text-white hover:bg-suface hover:text-brand-primary font-semibold"
             }
             to={
-              userInfo?.role === "Admin"
-                ? "/dashboard/adminHome"
-                : userInfo?.role === "Buyer"
-                ? "/dashboard/buyerHome"
-                : userInfo?.role === "Worker"
-                ? "/dashboard/workerHome"
-                : "/"
+              '/dashboard'
             }
           >
             Dashboard

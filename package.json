@@ -33,6 +33,7 @@
     "react-router-dom": "^7.1.1",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.15.10",
+    "sweetalert2-react-content": "^5.1.0",
     "swiper": "^11.2.1"
   },
   "devDependencies": {

@@ -5,12 +5,18 @@ import { FaHistory, FaHome, FaTasks, FaUsers } from "react-icons/fa";
 import { MdAddTask, MdPayment, MdTask } from "react-icons/md";
 import { AiOutlineOrderedList } from "react-icons/ai";
 
-// Helper function to generate sidebar links
-const generateLinks = (links) => {
-  return links.map(({ to, label,icon }) => (
-    <li key={to}>
+
+const LeftSidebar = () => {
+  const { user } = useAuth();
+  const [userInfo] = useRole();
+  const sideBbarLinks= <>
+  
+  {/* admin link */}
+  {user && userInfo?.role == "Admin" && <>
+  
+    <li>
       <NavLink
-        to={to}
+      to={'/dashboard/adminHome'}
         className={({ isActive }) =>
           ` transition-colors duration-300 flex items-center gap-2 w-fit ${
             isActive
@@ -19,50 +25,190 @@ const generateLinks = (links) => {
           }`
         }
       >
-        <span className="">{icon}</span> <span>{label}</span>
+        <span className=""><FaHome /></span> <span>Home</span>
       </NavLink>
     </li>
-  ));
-};
-
-const LeftSidebar = () => {
-  const { user } = useAuth();
-  const [userInfo] = useRole();
-
-  // Define links based on roles
-  const adminLinks = [
-    { to: "adminHome", label: "Home", icon: <FaHome /> },
-    { to: "manage-users", label: "Manage Users", icon: <FaUsers /> },
-    { to: "manage-tasks", label: "Manage Task", icon: <FaTasks /> },
-  ];
+  <li>
+      <NavLink
+      to={'/dashboard/manage-users'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><FaUsers /></span> <span>Manage Users</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/manage-tasks'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><FaTasks /></span> <span>Manage Task</span>
+      </NavLink>
+    </li>
   
-  const buyerLinks = [
-    { to: "buyerHome", label: "Home", icon: <FaHome /> },
-    { to: "add-tasks", label: "Add New Tasks", icon: <MdAddTask /> },
-    { to: "my-tasks", label: "My Tasks", icon: <MdTask /> },
-    { to: "purchase-coins", label: "Purchase Coins", icon: <MdPayment /> },
-    { to: "payment-history", label: "Payment History", icon: <FaHistory /> },
-  ];
   
-  const workerLinks = [
-    { to: "workerHome", label: "Home", icon: <FaHome /> },
-    { to: "workerTaskList", label: "Task List", icon: <AiOutlineOrderedList /> },
-    { to: "workerSubmissions", label: "My Submissions", icon: <MdTask /> },
-    { to: "workerWithdrawals", label: "Withdrawals", icon: <MdPayment /> },
-  ];
-
-  // Determine which links to render
-  const sidebarLinks =
-    user && userInfo?.role === "Admin"
-      ? generateLinks(adminLinks)
-      : user && userInfo?.role === "Buyer"
-      ? generateLinks(buyerLinks)
-      : user && userInfo?.role === "Worker"
-      ? generateLinks(workerLinks)
-      : "";
+  
+  </>}
+  
+  {/* buyer links */}
+  {user && userInfo?.role == "Buyer" && <>
+  
+  
+    <li>
+      <NavLink
+      to={'/dashboard/buyerHome'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><FaHome /></span> <span>Home</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/add-tasks'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><MdAddTask /></span> <span>Add New Tasks</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/my-tasks'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><MdTask /></span> <span>My Tasks</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/purchase-coins'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><MdPayment /></span> <span>Purchase Coins</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/payment-history'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><FaHistory /></span> <span>Payment History</span>
+      </NavLink>
+    </li>
+  
+  
+  
+  
+  
+  </>}
+  
+  
+  {/* worker links */}
+  {user && userInfo?.role == "Worker" && <>
+  
+    <li>
+      <NavLink
+      to={'/dashboard/workerHome'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><FaHome /></span> <span>Home</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/workerTaskList'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><AiOutlineOrderedList /></span> <span>Task List</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/workerSubmissions'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><MdTask /></span> <span>My Submissions</span>
+      </NavLink>
+    </li>
+  <li>
+      <NavLink
+      to={'/dashboard/workerWithdrawals'}
+        className={({ isActive }) =>
+          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+            isActive
+              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              : "text-white font-normal hover:text-brand-primary"
+          }`
+        }
+      >
+        <span className=""><MdPayment /></span> <span>Withdrawals</span>
+      </NavLink>
+    </li>
+  </>}
+  
+  </> 
+ 
 
   return (
-    <div className="drawer lg:drawer-open bg-bg-main">
+    <div className="drawer lg:drawer-open bg-bg-main z-50">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
       <div className="drawer-side">
@@ -71,9 +217,9 @@ const LeftSidebar = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="transition-all duration-300 ease-in-out text-white min-h-full w-80 px-8 py-10 space-y-4 shadow-md border-r border-brand-primary/10">
+        <ul className="transition-all duration-300 ease-in-out text-white min-h-full w-80 px-8 py-10 space-y-4 shadow-md border-r border-brand-primary/10 bg-bg-main z-50 ">
           {/* Sidebar content here */}
-          {sidebarLinks}
+          {sideBbarLinks}
         </ul>
       </div>
     </div>

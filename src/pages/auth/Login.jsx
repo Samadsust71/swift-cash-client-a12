@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser, setLoading, loading ,signInWithGoogle} = useAuth();
+  const { signInUser,  loading ,signInWithGoogle} = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -23,13 +23,13 @@ const Login = () => {
     signInUser(email, password)
       .then(() => {
         toast.success("Login Succesfull");
-        navigate("/");
+        navigate( "/dashboard");
         reset();
-        setLoading(false);
+        
       })
-      .catch(() => {
+      .catch((error) => {
         toast.error("Invalid Email or Password");
-        setLoading(false);
+        console.log(error.message)
         reset()
       });
   };
@@ -39,7 +39,7 @@ const Login = () => {
   const handleGoogleSignIn = ()=>{
     signInWithGoogle()
     .then((res) => {
-      setLoading(false)
+    
       const user = res?.user
       const users = {
         name: user?.displayName || "",
@@ -51,13 +51,12 @@ const Login = () => {
       };
       axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
       toast.success("Login Successful!!!")
-      navigate( "/");
+      navigate( "/dashboard");
       
     })
     .catch((err) => {
-      setLoading(false)
       toast.error(err?.message)
-      
+      console.log(err?.message)
     });
 }
   return (
@@ -116,7 +115,7 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold">
+          <button disabled={loading} type="submit" className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold">
             {loading ? "Signing In..." : "Sign In"}
           </button>
         </form>

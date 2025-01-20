@@ -9,7 +9,7 @@ const BuyerRoute = ({children}) => {
   
     if (isLoading) return <Loading />
     if (userInfo?.role === 'Buyer') return children
-    return <Navigate to='/dashboard' replace='true' />
+    return <Navigate to='/dashboard'  />
   }
   
   BuyerRoute.propTypes = {

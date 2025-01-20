@@ -52,9 +52,8 @@ const AdminManageUsers = () => {
     });
   };
 
-  const handleSubmit = (e, id) => {
-    e.preventDefault();
-    const role = e.target.role.value;
+  const handleRoleChange = (e, id) => {
+    const role = e.target.value;
     Swal.fire({
       title: "Are you sure you want to update the role?",
       icon: "warning",
@@ -126,28 +125,18 @@ const AdminManageUsers = () => {
                     </button>
                   </td>
                   <td>
-                    <label className="form-control w-full max-w-40">
-                      <form
-                        onSubmit={(e) => handleSubmit(e, user?._id)}
-                        className="flex items-center gap-1"
+                  <label className="form-control w-full max-w-40">
+                      <select
+                        onChange={(e) => handleRoleChange(e, user?._id)}
+                        required
+                        name="role"
+                        defaultValue={user?.role}
+                        className="select select-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm select-sm"
                       >
-                        <select
-                          required
-                          name="role"
-                          defaultValue={user && user?.role}
-                          className="select select-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm select-sm"
-                        >
-                          <option value="Worker">Worker</option>
-                          <option value="Buyer">Buyer</option>
-                          <option value="Admin">Admin</option>
-                        </select>
-                        <button
-                          type="submit"
-                          className="btn bg-brand-primary text-gray-900  hover:bg-brand-primary/80 outline-none border-none font-semibold btn-xs"
-                        >
-                          Update
-                        </button>
-                      </form>
+                        <option value="Worker">Worker</option>
+                        <option value="Buyer">Buyer</option>
+                        <option value="Admin">Admin</option>
+                      </select>
                     </label>
                   </td>
                 </tr>

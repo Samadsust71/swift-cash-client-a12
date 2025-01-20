@@ -3,10 +3,13 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { format } from "date-fns";
 import Loading from "../../../components/Loading";
+import { useState } from "react";
 
 const WorkerSubmission = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const [currentPage, setCurrentPage] = useState(1);
+  const submissionsPerPage = 8;
   const {
     data: mySubmissions = [],
     isLoading,
@@ -18,14 +21,25 @@ const WorkerSubmission = () => {
       return data;
     },
   });
+  // Calculate pagination details
+  const indexOfLastSubmission = currentPage * submissionsPerPage;
+  const indexOfFirstSubmission = indexOfLastSubmission - submissionsPerPage;
+  const currentSubmissions = mySubmissions.slice(
+    indexOfFirstSubmission,
+    indexOfLastSubmission
+  );
+  const totalPages = Math.ceil(mySubmissions.length / submissionsPerPage);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
   if(isLoading) return <Loading/>
   if(isError) console.log("error happend in my submission", isError)
   return (
-    <div className="p-6  rounded-lg shadow-lg w-full mx-auto bg-bg-main">
+    <div className="p-6 rounded-lg shadow-lg w-full mx-auto bg-bg-main">
       <h2 className="text-3xl font-semibold text-center mb-6 text-white">All Submission</h2>
       <div className="divider"></div>
       <div className="overflow-x-auto">
-        {mySubmissions && mySubmissions.length ? (
+        {currentSubmissions && currentSubmissions.length ? (
           <table className="table text-white">
             {/* head */}
             <thead className="bg-surface text-brand-primary text-center">
@@ -39,7 +53,7 @@ const WorkerSubmission = () => {
               </tr>
             </thead>
             <tbody className="text-center bg-surface">
-              {mySubmissions.map((submission) => (
+              {currentSubmissions.map((submission) => (
                 <tr key={submission?._id}>
                   <td>{submission?.task_title?.slice(0, 10)}</td>
                   <td>{submission?.buyer_name || "N/A"}</td>
@@ -79,6 +93,22 @@ const WorkerSubmission = () => {
             <p className="text-center">No Submission made</p>
           </div>
         )}
+      </div>
+      {/* Pagination */}
+      <div className="flex justify-center mt-6">
+        {[...Array(totalPages)].map((_, pageIndex) => (
+          <button
+            key={pageIndex}
+            onClick={() => handlePageChange(pageIndex + 1)}
+            className={`px-4 py-2 mx-1 rounded-lg ${
+              currentPage === pageIndex + 1
+                ? "bg-surface text-white"
+                : "bg-gray-100 text-gray-900"
+            } hover:bg-surface/80 hover:text-white`}
+          >
+            {pageIndex + 1}
+          </button>
+        ))}
       </div>
     </div>
   );

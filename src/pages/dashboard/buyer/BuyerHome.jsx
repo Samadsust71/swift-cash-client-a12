@@ -20,6 +20,7 @@ const BuyerHome = () => {
     data: buyerStat = {},
     isLoading,
     isError,
+    refetch:statRefetch
   } = useQuery({
     queryKey: ["buyer-stat", user?.email],
     queryFn: async () => {
@@ -28,7 +29,7 @@ const BuyerHome = () => {
     },
   });
 
-  const { data: allSUbmissions = [], refetch } = useQuery({
+  const { data: allSUbmissions = [],refetch } = useQuery({
     queryKey: ["all-submissions", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -41,7 +42,9 @@ const BuyerHome = () => {
   if (isError) console.log("error happend in buyer home", isError);
 
   const handleApprove = (submissionInfo) => {
-    const { _id, worker_email, payable_amount } = submissionInfo;
+    const { _id, worker_email, payable_amount ,task_id,task_title
+    } = submissionInfo;
+    
     Swal.fire({
       title: "Are you sure you want to approve?",
       icon: "warning",
@@ -57,6 +60,9 @@ const BuyerHome = () => {
           const { data } = await axiosSecure.patch(`/buyer/approve/${_id}`, {
             worker_email,
             payable_amount,
+            task_id,
+            buyerName :user?.displayName,
+            task_title
           });
           if (data) {
             Swal.fire({
@@ -66,6 +72,7 @@ const BuyerHome = () => {
               icon: "success",
             });
             refetch();
+            statRefetch()
           }
         } catch (error) {
           toast.error(error?.message || "Some thing went Wrong");
@@ -74,7 +81,7 @@ const BuyerHome = () => {
     });
   };
   const handleReject = async (submissionInfo) => {
-    const { _id, task_id } = submissionInfo;
+    const { _id, task_id ,task_title,worker_email} = submissionInfo;
 
     Swal.fire({
       title: "Are you sure you want to reject?",
@@ -90,6 +97,9 @@ const BuyerHome = () => {
         try {
           const { data } = await axiosSecure.patch(`/buyer/reject/${_id}`, {
             task_id,
+            buyerName :user?.displayName,
+            task_title,
+            worker_email
           });
           if (data) {
             Swal.fire({
@@ -99,6 +109,7 @@ const BuyerHome = () => {
               confirmButtonColor: "#1E333C",
             });
             refetch();
+            statRefetch()
           }
         } catch (error) {
           toast.error(error?.message || "Some thing went Wrong");
@@ -233,6 +244,7 @@ const BuyerHome = () => {
           </div>
         </Dialog.Panel>
       </Dialog>
+      
     </div>
   );
 };

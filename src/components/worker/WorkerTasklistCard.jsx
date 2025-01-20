@@ -14,9 +14,9 @@ const WorkerTasklistCard = ({ task }) => {
     buyer,
   } = task || {};
 
-  console.log(task);
+  
   return (
-    <Link to={`taskDetails/${_id}`} className="cursor-pointer">
+    <Link to={`/dashboard/taskDetails/${_id}`} className="cursor-pointer">
       <motion.div
         whileHover={{ scale: 1.03 }}
         className=" flex flex-col  w-full bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden"

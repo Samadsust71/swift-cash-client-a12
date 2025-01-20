@@ -1,4 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Loading from '../components/Loading'
 import useAuth from '../hooks/useAuth'
@@ -7,7 +7,6 @@ import useAuth from '../hooks/useAuth'
 const PrivateRoute = ({children}) => {
    
     const {user,loading} = useAuth()
-    const location = useLocation()
     
     if (loading) {
         return <Loading/>
@@ -17,7 +16,7 @@ const PrivateRoute = ({children}) => {
         return children
     }
 
-  return <Navigate state={location?.pathname} to={'/login'} /> 
+  return <Navigate  to={'/login'} /> 
 }
 
 PrivateRoute.propTypes = {

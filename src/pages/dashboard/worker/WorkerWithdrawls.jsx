@@ -34,6 +34,11 @@ const WorkerWithdrawls = () => {
       setWithdrawalAmount(0)
       return
     }
+    if(value > userCoins){
+      setCoinToWithdraw(0)
+      setWithdrawalAmount(0)
+      return
+    }
       setCoinToWithdraw(value);
       setWithdrawalAmount(value / 20); // Convert coins to dollars 
     

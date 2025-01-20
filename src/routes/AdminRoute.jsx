@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   
     if (isLoading) return <Loading />
     if (userInfo?.role === 'Admin') return children
-    return <Navigate to='/dashboard' replace='true' />
+    return <Navigate to='/dashboard'  />
   }
   
   AdminRoute.propTypes = {

@@ -1,6 +1,6 @@
 const Loading = () => {
     return (
-      <div className="flex justify-center items-center gap-1 min-h-[calc(100vh-576px)] my-10">
+      <div className="flex justify-center items-center gap-1 min-h-screen my-10">
         <span className="loading loading-spinner loading-lg"></span>
         <p className="text-2xl">Loading...</p>
       </div>

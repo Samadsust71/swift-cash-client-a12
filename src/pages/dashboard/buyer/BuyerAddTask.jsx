@@ -17,9 +17,11 @@ import toast from "react-hot-toast";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import {  useNavigate } from "react-router-dom";
 
 const BuyerAddTask = () => {
   const [userInfo,,refetch] = useRole()
+  const navigate = useNavigate()
   const {user} = useAuth()
   const {
     handleSubmit,
@@ -53,6 +55,7 @@ const BuyerAddTask = () => {
     const totalPayableAmount = required_workers * payable_amount
     if(parseInt(totalPayableAmount) > parseInt(userInfo?.coins)){
       toast.error("Not Enough Coin")
+      navigate("/dashboard/purchase-coins")
       return
     }
 
@@ -150,27 +153,9 @@ const BuyerAddTask = () => {
             )}
           />
         </div>
-
-        {/* Submission Info */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text flex items-center text-white">
-              <FolderPenIcon className="mr-2" /> Submission Info
-            </span>
-          </label>
-          <input
-            type="text"
-            placeholder="Enter What to Submit"
-            className="input input-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
-            {...register("submission_info", { required: "Submission info is required" })}
-          />
-          {errors.submission_info && (
-            <p className="text-red-500 text-sm mt-1">{errors.submission_info.message}</p>
-          )}
-        </div>
-
-        {/* Task Image */}
-        <div className="form-control">
+        
+         {/* Task Image */}
+         <div className="form-control">
           <label className="label">
             <span className="label-text flex items-center text-white">
               <Image className="mr-2" /> Task Image
@@ -183,6 +168,25 @@ const BuyerAddTask = () => {
           />
           {errors?.task_image && (
             <p className="text-red-500 text-sm mt-1">{errors.task_image.message}</p>
+          )}
+        </div>
+
+        {/* Submission Info */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text flex items-center text-white">
+              <FolderPenIcon className="mr-2" /> Submission Info
+            </span>
+          </label>
+          <textarea
+            type="text"
+            placeholder="Enter What to Submit"
+            className="textarea textarea-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
+            rows={4}
+            {...register("submission_info", { required: "Submission info is required" })}
+          />
+          {errors.submission_info && (
+            <p className="text-red-500 text-sm mt-1">{errors.submission_info.message}</p>
           )}
         </div>
 

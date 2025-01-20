@@ -18,7 +18,7 @@ const Register = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const { createUser, updateUser, setUser, loading, setLoading } = useAuth();
+  const { createUser, updateUser, setUser, loading } = useAuth();
 
   // Handle form submission
   const onSubmit = async (data) => {
@@ -42,17 +42,14 @@ const Register = () => {
           timestamp: new Date().getTime(),
         };
         axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
-
         toast.success("Registration Succesfull!!!");
-        navigate("/");
-        setLoading(false);
+        navigate("/dashboard");
         reset()
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Email already in use");
-        setLoading(false);
         reset()
-        console.log(error?.message);
+        
       });
   };
 
@@ -175,6 +172,7 @@ const Register = () => {
 
           <button
             type="submit"
+            disabled={loading}
             className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold"
           >
             {loading ? "Signing Up..." : "Sign Up"}

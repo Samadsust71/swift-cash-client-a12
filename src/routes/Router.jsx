@@ -4,7 +4,6 @@ import Home from "../pages/home/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import DashboardLayout from "../layouts/DashboardLayout";
-
 import PrivateRoute from "./PrivateRoute";
 import AdminHome from "../pages/dashboard/admin/AdminHome";
 import AdminManageUsers from "../pages/dashboard/admin/AdminManageUsers";
@@ -23,6 +22,7 @@ import BuyerRoute from "./BuyerRoute";
 import TaskDetails from "../pages/dashboard/worker/TaskDetails";
 import WorkerRoute from "./WorkerRoute";
 import ErrorPage from "../pages/error/ErrorPage";
+import MyHome from "../pages/dashboard/MyHome";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +53,13 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "adminHome",
+        index: true,
+        element: <MyHome/>
+
+      },
+      {
+      
+       path:"adminHome",
         element: (
           <PrivateRoute>
             <AdminRoute>
@@ -82,9 +88,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "buyerHome",
-
+      {  
+        
+        path:'buyerHome',
         element: (
           <PrivateRoute>
             <BuyerRoute>
@@ -134,6 +140,7 @@ const router = createBrowserRouter([
         ),
       },
       {
+        
         path: "workerHome",
         element: (
           <PrivateRoute>
@@ -164,7 +171,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "workerTaskList/taskDetails/:id",
+        path: "taskDetails/:id",
         element: (
           <PrivateRoute>
             <WorkerRoute>
