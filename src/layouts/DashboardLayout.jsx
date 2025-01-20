@@ -16,8 +16,9 @@ const DashboardLayout = () => {
           <div className="p-5 min-h-screen">
             <Outlet />
           </div>
+          <DashboardFooter />
         </div>
-        <DashboardFooter />
+        
       </div>
     </div>
   );
