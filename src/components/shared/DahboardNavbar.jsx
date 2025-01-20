@@ -5,10 +5,9 @@ import useAuth from "../../hooks/useAuth";
 import useRole from "../../hooks/useRole";
 import { useNavigate } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
-import Loading from "../Loading";
 import Notifications from "./Notifications";
 const DahboardNavbar = () => {
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   const [adminInfo] = useAdmin();
   const [userInfo] = useRole();
   const navigate = useNavigate();
@@ -52,7 +51,7 @@ const DahboardNavbar = () => {
       )}
     </>
   );
-  if (loading) return <Loading />;
+  
   return (
     <div className="bg-bg-main w-full fixed top-0 left-0 h-24 inset-0 z-20 shadow-md border-b border-brand-primary/10 pt-4">
       <div className="navbar p-0 container mx-auto text-text-light bg-bg-main">

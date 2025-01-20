@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -23,7 +24,8 @@ export default {
       },
     },
   },
-  plugins: [daisyui],
+  // eslint-disable-next-line no-undef
+  plugins: [daisyui,require('tailwind-scrollbar')({ nocompatible: true })],
   daisyui: {
     themes: ["sunset", "dracula"],
   },

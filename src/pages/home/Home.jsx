@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Banner from "../../components/banner/Banner";
 import BestWorker from "../../components/best-workers/BestWorker";
 import CashoutSection from "../../components/stats-section/CashoutSection";
@@ -10,6 +11,9 @@ import Testimonial from "../../components/Testimonial";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home | Swift Cash</title>
+      </Helmet>
       <Banner />
       <div className="container mx-auto space-y-20 mt-20">
         <StatsSection />

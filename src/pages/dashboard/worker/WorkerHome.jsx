@@ -3,6 +3,7 @@ import Loading from "../../../components/Loading";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import WorkerStates from "../../../components/worker/WorkerStates";
+import { Helmet } from "react-helmet-async";
 
 const WorkerHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,6 +32,9 @@ const WorkerHome = () => {
   if (isError) console.log("Error in Worker Home", isError);
   return (
     <div>
+      <Helmet>
+        <title>Worker Home | Swift Cash</title>
+      </Helmet>
       <WorkerStates workerStat={workerStat} />
       <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
         <h2 className="text-3xl font-semibold text-center mb-6 text-white">

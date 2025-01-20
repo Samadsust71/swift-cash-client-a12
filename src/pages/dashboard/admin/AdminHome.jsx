@@ -5,6 +5,7 @@ import useAdmin from "../../../hooks/useAdmin";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AdminHome = () => {
   const [adminInfo, isLoading] = useAdmin();
@@ -62,6 +63,9 @@ const AdminHome = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Admin Home | Swift Cash</title>
+      </Helmet>
       <AdminStates adminInfo={adminInfo} />
 
       <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">

@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -61,6 +62,9 @@ const Login = () => {
 }
   return (
     <div className="min-h-screen flex items-center justify-center  text-text-light bg-bg-main">
+      <Helmet>
+        <title>Sign In | Swift Cash</title>
+      </Helmet>
       <div className="bg-gradient-to-t to-brand-primary/20 from-surface p-8 rounded-lg shadow-lg w-full max-w-xl">
         <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 

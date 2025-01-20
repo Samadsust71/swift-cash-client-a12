@@ -10,6 +10,7 @@ import { useState } from "react";
 import { FaDollarSign, FaUserEdit } from "react-icons/fa";
 import { MdOutlineTitle } from "react-icons/md";
 import { FcViewDetails } from "react-icons/fc";
+import { Helmet } from "react-helmet-async";
 
 const BuyerHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -127,6 +128,9 @@ const BuyerHome = () => {
   };
   return (
     <div className="">
+      <Helmet>
+        <title>Buyer Home | Swift Cash</title>
+      </Helmet>
       <BuyerStates buyerStat={buyerStat} />
       <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
         <h2 className="text-3xl font-semibold text-center mb-6 text-white">

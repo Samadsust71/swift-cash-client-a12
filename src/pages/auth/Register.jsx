@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../api/utils";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -59,6 +60,9 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center  text-text-light bg-bg-main py-10">
+      <Helmet>
+        <title>Sign Up | Swift Cash</title>
+      </Helmet>
       <div className="bg-gradient-to-t to-brand-primary/20 from-surface p-8 rounded-lg shadow-lg w-full max-w-xl">
         <div className="text-center my-6">
           <h2 className="text-2xl font-bold text-center mb-2">
