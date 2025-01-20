@@ -208,16 +208,16 @@ const LeftSidebar = () => {
  
 
   return (
-    <div className="drawer lg:drawer-open bg-bg-main z-50">
+    <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 
-      <div className="drawer-side">
+      <div className="drawer-side  pt-20 lg:pt-10 ">
         <label
           htmlFor="my-drawer-2"
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="transition-all duration-300 ease-in-out text-white min-h-full w-80 px-8 py-10 space-y-4 shadow-md border-r border-brand-primary/10 bg-bg-main z-50 ">
+        <ul className="transition-all duration-300 ease-in-out text-white min-h-full w-80 px-8 py-10 space-y-8 shadow-md  bg-bg-main z-[1] ">
           {/* Sidebar content here */}
           {sideBbarLinks}
         </ul>

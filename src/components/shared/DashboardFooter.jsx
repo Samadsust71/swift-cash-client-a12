@@ -1,4 +1,4 @@
-import {  FaFacebookF, FaInstagram, FaLinkedinIn,  FaTwitter } from "react-icons/fa"
+import {  FaFacebookF, FaGithub,  FaLinkedinIn,  FaTwitter } from "react-icons/fa"
 
 import logo from "../../assets/logo-3.png"
 
@@ -28,13 +28,13 @@ const DashboardFooter = () => {
                     <FaFacebookF />
                   </a>
                   <a
-                    href="https://www.instagram.com/_samad_reza_"
-                    target="blank"
-                    className="bg-surface/30 hover:bg-rose-700 rounded-full p-2 text-white"
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram />
-                  </a>
+                href="https://github.com/Samadsust71"
+                target="blank"
+                className="bg-surface/30 hover:bg-white/90 rounded-full p-2 text-white hover:text-gray-900"
+                aria-label="Instagram"
+              >
+                <FaGithub />
+              </a>
                   <a
                     href="https://x.com/SamadReza71"
                     target="blank"

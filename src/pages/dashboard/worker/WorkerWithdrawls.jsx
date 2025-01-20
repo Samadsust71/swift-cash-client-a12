@@ -52,7 +52,10 @@ const WorkerWithdrawls = () => {
     toast.success(
       "Withdrawal request submitted successfully!"
     );
-    
+    setCoinToWithdraw(0);
+      setWithdrawalAmount(0);
+      setPaymentSystem("");
+      setAccountNumber("");
   },
   onError: (error) => {
     toast.error(error?.response?.data?.message || "Failed to submit request.");
@@ -85,7 +88,7 @@ const WorkerWithdrawls = () => {
 
  
   return (
-    <div className="bg-surface mt-8 text-white p-6 rounded-md shadow-md max-w-lg mx-auto">
+    <div className="bg-surface  text-white p-6 rounded-md shadow-md max-w-lg mx-auto">
     <h1 className="text-2xl font-bold mb-4 text-center">Withdraw Coins</h1>
 
     <div className="flex items-center justify-between mb-4">
@@ -117,7 +120,7 @@ const WorkerWithdrawls = () => {
         <input
           type="number"
           className="w-full p-2 bg-gray-800 text-gray-400 rounded-md"
-          value={withdrawalAmount.toFixed(2)}
+          value={withdrawalAmount?.toFixed(2) || 0}
           readOnly
           disabled
         />
@@ -154,7 +157,7 @@ const WorkerWithdrawls = () => {
       {userInfo?.coins >= 200 ? (
         <button
           type="submit"
-          className="w-full bg-green-600 hover:bg-green-500 text-white py-2 rounded-md transition-all"
+          className="w-full bg-brand-primary/90 hover:bg-brand-primary/70 text-black font-semibold py-2 rounded-md transition-all"
         >
           {isPending?"Withdrawing...":"Withdraw"}
           

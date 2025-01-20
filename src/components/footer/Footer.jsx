@@ -1,7 +1,7 @@
 import {
   FaEnvelope,
   FaFacebookF,
-  FaInstagram,
+  FaGithub,
   FaLinkedinIn,
   FaMapMarkerAlt,
   FaPhoneAlt,
@@ -37,12 +37,12 @@ const Footer = () => {
                 <FaFacebookF />
               </a>
               <a
-                href="https://www.instagram.com/_samad_reza_"
+                href="https://github.com/Samadsust71"
                 target="blank"
-                className="bg-surface/30 hover:bg-rose-700 rounded-full p-2 text-white"
+                className="bg-surface/30 hover:bg-white/90 rounded-full p-2 text-white hover:text-gray-900"
                 aria-label="Instagram"
               >
-                <FaInstagram />
+                <FaGithub />
               </a>
               <a
                 href="https://x.com/SamadReza71"

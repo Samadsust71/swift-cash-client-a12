@@ -6,14 +6,14 @@ const DashboardLayout = () => {
   return (
     <div className="relative">
       <DashboardNavbar />
-      <div className="min-h-screen mt-[66px]">
+      <div className="min-h-screen mt-24">
         {/* Left Side: Sidebar Component */}
 
-        <div className="fixed  left-0 top-[66px]">
+        <div className="fixed min-h-screen  bg-bg-main z-30 left-0 top-24">
           <LeftSidebar />
         </div>
         <div className="flex-1  lg:ml-80">
-          <div className="p-5 min-h-screen">
+          <div className="p-5 min-h-[calc(100vh-104px)]">
             <Outlet />
           </div>
           <DashboardFooter />

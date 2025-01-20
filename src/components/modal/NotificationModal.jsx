@@ -61,7 +61,7 @@ const NotificationModal = ({ closeModal, isModalOpen, notifications }) => {
                     ))
                   ) : (
                     <p className="text-center text-sm text-white">
-                      No notifications available.
+                      No new notification
                     </p>
                   )}
                 </div>

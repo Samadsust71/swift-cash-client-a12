@@ -71,8 +71,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-bg-main w-full fixed inset-0  top-0 left-0 h-[66px] z-20 shadow-md border-b border-brand-primary/10">
-      <div className="navbar p-0 container mx-auto text-text-light">
+    <div className="bg-bg-main backdrop-blur-sm sticky top-0 right-0 z-50 h-24 shadow-md border-b border-brand-primary/10">
+      <div className="navbar p-0 container py-5 mx-auto text-text-light">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="lg:hidden">
