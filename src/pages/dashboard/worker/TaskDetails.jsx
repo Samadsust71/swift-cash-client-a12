@@ -81,7 +81,7 @@ const TaskDetails = () => {
             <img
               src={task_image_url}
               alt={task_title}
-              className="w-full h-40 object-cover rounded-xl"
+              className="w-full h-60 object-cover rounded-xl"
             />
           </div>
           {/* Content Section */}

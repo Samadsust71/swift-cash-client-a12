@@ -17,9 +17,9 @@ const WorkerTasklistCard = ({ task }) => {
   return (
     <Link
       to={`/dashboard/taskDetails/${_id}`}
-      className="flex flex-col cursor-pointer w-full bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden"
+      className=" cursor-pointer w-full bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden"
     >
-      <motion.div whileHover={{ scale: 1.03 }} className="  ">
+      <motion.div whileHover={{ scale: 1.03 }} className="flex flex-col h-full">
         {/* Image Section */}
         <div>
           <img
@@ -40,7 +40,7 @@ const WorkerTasklistCard = ({ task }) => {
               <span className=" ">{payable_amount}</span>
             </div>
           </div>
-          <div className="my-4 pl-4">
+          <div className="my-4 px-4 flex-grow">
             <h3 className="text-lg font-semibold">
               {task_title}{" "}
             </h3>
@@ -56,8 +56,7 @@ const WorkerTasklistCard = ({ task }) => {
             </div>
           </div>
         {/* Footer */}
-      </motion.div>
-      <motion.div
+        <motion.div
         initial={{ opacity: 1, y: 0 }}
         whileHover={{ opacity: 1, y: 5 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -70,6 +69,8 @@ const WorkerTasklistCard = ({ task }) => {
           View Details
         </motion.button>
       </motion.div>
+      </motion.div>
+      
     </Link>
   );
 };
