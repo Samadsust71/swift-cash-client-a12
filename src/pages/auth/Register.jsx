@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isSigning, setIsSigning] = useState(false)
   const {
     register,
     handleSubmit,
@@ -19,10 +19,11 @@ const Register = () => {
   } = useForm();
 
   const navigate = useNavigate();
-  const { createUser, updateUser, setUser, loading } = useAuth();
+  const { createUser, updateUser, setUser} = useAuth();
 
   // Handle form submission
   const onSubmit = async (data) => {
+    setIsSigning(true)
     const { name, email, photo, password, role } = data;
 
     const image = photo[0];
@@ -45,12 +46,13 @@ const Register = () => {
         axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
         toast.success("Registration Succesfull!!!");
         navigate("/dashboard");
+        setIsSigning(false)
         reset()
       })
       .catch(() => {
         toast.error("Email already in use");
         reset()
-        
+        setIsSigning(false)
       });
   };
 
@@ -129,6 +131,7 @@ const Register = () => {
               <div className="relative">
                 <select
                   {...register("role", { required: "Role is required" })}
+                  defaultValue={"Worker"}
                   className="select select-bordered w-full bg-surface text-text-light placeholder:text-text-muted text-sm"
                 >
                   <option value="Worker">Worker</option>
@@ -176,10 +179,10 @@ const Register = () => {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isSigning}
             className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold"
           >
-            {loading ? "Signing Up..." : "Sign Up"}
+            {isSigning ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 

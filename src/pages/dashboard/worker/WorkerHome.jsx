@@ -36,7 +36,7 @@ const WorkerHome = () => {
         <title>Worker Home | Swift Cash</title>
       </Helmet>
       <WorkerStates workerStat={workerStat} />
-      <div className="p-6  rounded-lg shadow-lg my-10 w-full mx-auto bg-bg-main">
+      <div className="p-6  rounded-lg shadow-lg mt-10 w-full mx-auto bg-bg-main">
         <h2 className="text-3xl font-semibold text-center mb-6 text-white">
           All Approved Submissions 
         </h2>

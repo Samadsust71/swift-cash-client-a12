@@ -19,9 +19,10 @@ const WorkerTasklistCard = ({ task }) => {
     <Link to={`/dashboard/taskDetails/${_id}`} className="cursor-pointer">
       <motion.div
         whileHover={{ scale: 1.03 }}
-        className=" flex flex-col  w-full bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden"
+        className="   w-full bg-gradient-to-t to-brand-primary/20 from-surface text-white rounded-lg shadow-lg overflow-hidden"
       >
-        {/* Image Section */}
+        <div className="flex flex-col">
+          {/* Image Section */}
         <div>
           <img
             src={task_image_url}
@@ -42,7 +43,7 @@ const WorkerTasklistCard = ({ task }) => {
           </div>
         </div>
 
-        <div className="flex-grow p-4 space-y-2">
+        <div className="flex-grow  my-4 pl-4 space-y-2">
           <h3 className="text-lg font-semibold">{task_title?.slice(0,70)}  </h3>
           <div className="flex items-center gap-2 w-fit text-sm text-gray-400">
             <span>Buyer:</span>
@@ -52,6 +53,7 @@ const WorkerTasklistCard = ({ task }) => {
             <span>Deadline:</span>
             <span>{format(new Date(deadline), "dd-MM-yyyy")}</span>
           </div>
+        </div>
         </div>
 
         {/* Footer */}

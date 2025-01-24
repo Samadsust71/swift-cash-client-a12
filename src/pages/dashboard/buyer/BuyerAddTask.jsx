@@ -69,7 +69,7 @@ const BuyerAddTask = () => {
 
   return (
     <div className="bg-gradient-to-t to-brand-primary/20 from-surface p-8 rounded-lg shadow-lg w-full max-w-xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">Add New Task</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center text-white">Add New Task</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Task Title */}
         <div className="form-control">
@@ -146,7 +146,7 @@ const BuyerAddTask = () => {
             defaultValue={new Date()}
             render={({ field }) => (
               <DatePicker
-                className="select select-bordered w-fit"
+                className="select select-bordered w-fit bg-surface text-text-light placeholder:text-text-muted text-sm"
                 selected={field.value}
                 onChange={(date) => field.onChange(date)}
               />

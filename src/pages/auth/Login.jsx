@@ -10,7 +10,8 @@ import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { signInUser,  loading ,signInWithGoogle} = useAuth();
+  const { signInUser ,signInWithGoogle} = useAuth();
+  const [isSigning, setIsSigning] = useState(false)
   const navigate = useNavigate();
 
   const {
@@ -20,17 +21,19 @@ const Login = () => {
     reset,
   } = useForm();
   const onSubmit = (data) => {
+    setIsSigning(true)
     const { email, password } = data;
     signInUser(email, password)
       .then(() => {
         toast.success("Login Succesfull");
         navigate( "/dashboard");
         reset();
-        
+        setIsSigning(false)
       })
       .catch((error) => {
         toast.error("Invalid Email or Password");
         console.log(error.message)
+        setIsSigning(false)
         reset()
       });
   };
@@ -38,6 +41,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
   const handleGoogleSignIn = ()=>{
+    setIsSigning(true)
     signInWithGoogle()
     .then((res) => {
     
@@ -53,11 +57,12 @@ const Login = () => {
       axios.post(`${import.meta.env.VITE_API_URL}/users`, users);
       toast.success("Login Successful!!!")
       navigate( "/dashboard");
-      
+      setIsSigning(false)
     })
     .catch((err) => {
       toast.error(err?.message)
       console.log(err?.message)
+      setIsSigning(false)
     });
 }
   return (
@@ -68,7 +73,7 @@ const Login = () => {
       <div className="bg-gradient-to-t to-brand-primary/20 from-surface p-8 rounded-lg shadow-lg w-full max-w-xl">
         <h2 className="text-2xl font-bold text-center mb-6">Sign In</h2>
 
-        <button onClick={handleGoogleSignIn} disabled={loading} className="btn  w-full flex items-center justify-center gap-2 mb-4 bg-white/80 text-gray-900 outline-none border-none hover:bg-white/60">
+        <button onClick={handleGoogleSignIn} disabled={isSigning}  className="btn  w-full flex items-center justify-center gap-2 mb-4 bg-white/80 text-gray-900 outline-none border-none hover:bg-white/60">
           <FcGoogle className="text-lg" />
           Sign In with Google
         </button>
@@ -119,8 +124,8 @@ const Login = () => {
             </div>
           </div>
 
-          <button disabled={loading} type="submit" className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold">
-            {loading ? "Signing In..." : "Sign In"}
+          <button type="submit" disabled={isSigning} className="btn bg-brand-primary text-gray-900 w-full mt-2 hover:bg-brand-primary/80 outline-none border-none font-semibold">
+            {isSigning?"Signing...":"Sign"}
           </button>
         </form>
         <p className="text-center mt-6 font-semibold">

@@ -14,7 +14,6 @@ const useNotifications = (userEmail) => {
   return useQuery({
     queryKey: ["notifications", userEmail],
     queryFn: fetchNotifications,
-    refetchInterval: 10000, 
     enabled: !! userEmail, 
   });
 };

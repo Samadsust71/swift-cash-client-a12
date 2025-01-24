@@ -14,7 +14,7 @@ const BuyerPurchaseCoin = () => {
     setIsOpen(false)
   }
   return (
-    <div className="mt-10 text-white w-full mx-auto">
+    <div className="my-10 text-white w-full mx-auto">
       <h2 className="text-2xl font-bold mb-10 text-center">Purchase Coins</h2>
       <div className="max-w-2xl mx-auto  grid grid-cols-1 md:grid-cols-2  gap-6">
         {coinPackages.map((coinPackage, idx) => (
