@@ -2,6 +2,8 @@
 
 ![Swift Cash Preview](https://i.ibb.co.com/HD8dTdjK/Screenshot-60.png)
 
+## 🔗 **Live Demo:** [Visit Swift Cash](https://swift-cash-31855.web.app)
+
 ## 📌 Introduction
 
 **Swift Cash** is a web-based micro-tasking platform that enables users to complete small tasks and earn money. Inspired by platforms like **Picoworkers, Clickworker, and SEOClerks**, it provides a structured ecosystem for micro-earning.
