@@ -160,7 +160,7 @@ Replace values with your actual API keys and configurations.
 
 ## 🙌 Contributing
 
-We welcome contributions to improve **Swift Cash**! Please fork the repository and submit a pull request with your changes.
+I welcome contributions to improve **Swift Cash**! Please fork the repository and submit a pull request with your changes.
 
 ---
 
