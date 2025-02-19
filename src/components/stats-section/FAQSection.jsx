@@ -31,12 +31,12 @@ const FAQSection = () => {
   };
 
   return (
-    <div className=" text-white pb-12 ">
+    <div className=" text-white pb-12 w-full">
       <h2 className="text-2xl lg:text-4xl text-white font-bold text-center mb-6">
         Frequently Asked Questions
       </h2>
 
-      <div className="flex flex-col-reverse lg:flex-row gap-10 items-center">
+      <div className="w-full flex flex-col-reverse lg:flex-row gap-10 items-center justify-between">
       <div className="w-full lg:w-[50%] mx-auto space-y-4">
         {faqs.map((faq, index) => (
           <div key={index} className="bg-bg-main rounded-lg">
@@ -55,7 +55,8 @@ const FAQSection = () => {
             {openIndex === index && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
+                animate={{ height: "auto", opacity: 1, }}
+                transition={{ ease:"easeInOut" }}
                 exit={{ height: 0, opacity: 0 }}
                 className="p-4 text-white/80 border-t border-brand-primary/20"
               >
