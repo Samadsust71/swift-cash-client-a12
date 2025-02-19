@@ -5,9 +5,9 @@ import Heading from "../shared/Heading";
 
 const StatsSection = () => {
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Heading heading={'Empowering Users, One Task at a Time'} subHeading={'Discover how Swift Cash empowers users to achieve their financial goals. From quick cashouts to millions earned, these stats highlight the success of our growing community.'} />
-      <div className="bg-bg-main text-white py-10 px-4 md:px-10 rounded-lg flex flex-col lg:flex-row justify-center items-center lg:space-x-10 space-y-6 lg:space-y-0 ">
+      <div className="bg-bg-main text-white py-10 px-4 md:px-10 rounded-lg flex flex-col lg:flex-row justify-center items-center lg:space-x-10 space-y-6 lg:space-y-0  w-full mx-auto ">
       {/* First Stat */}
       <div className="flex flex-col items-center text-center">
         <div className="flex items-center space-x-2">
