@@ -7,7 +7,7 @@ const TrustSection = () => {
   return (
     <div className="flex flex-col lg:flex-row  text-white">
       {/* Left Section */}
-      <div className="flex-1 p-8 flex flex-col justify-center bg-gradient-to-t to-brand-primary/20 from-surface rounded-l-lg ">
+      <div className="flex-1 p-8 flex flex-col justify-center bg-bg-main rounded-l-lg ">
         <h2 className="text-4xl font-bold mb-4">
           Global Trust of <span className="text-5xl">1 Million</span> Businesses and Counting
         </h2>
@@ -47,7 +47,7 @@ const TrustSection = () => {
       {/* Right Section */}
       <div className="flex-1 relative">
         <img className="w-full h-full object-cover rounded-r-lg"
-          src="https://i.ibb.co.com/BGd8wWB/freepik-export-20250119044945-YVz6.jpg"alt="people using SWift Cash" />
+          src="https://i.ibb.co.com/BGd8wWB/freepik-export-20250119044945-YVz6.jpg"alt="people using Swift Cash" />
       </div>
     </div>
   );
