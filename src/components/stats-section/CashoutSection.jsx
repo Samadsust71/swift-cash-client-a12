@@ -32,7 +32,7 @@ const CashoutSection = () => {
             className={`relative w-full h-24 bg-bg-main rounded-xl flex items-center justify-center text-white text-lg font-medium shadow-lg hover:scale-110 transition-transform ${glowEffect}`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.4, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
             whileHover={{ scale: 0.95 }}
             whileTap={{ scale: 0.90 }}
           >
