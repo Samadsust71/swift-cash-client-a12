@@ -60,7 +60,7 @@ const DahboardNavbar = () => {
           <div className="drawer-content flex flex-col items-center justify-center bg-bg-main">
             <label
               htmlFor="my-drawer-2"
-              className="btn  drawer-button lg:hidden"
+              className="text-2xl text-brand-primary cursor-pointer drawer-button lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
