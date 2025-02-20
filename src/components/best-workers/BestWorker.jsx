@@ -31,7 +31,7 @@ const BestWorker = () => {
     <Heading heading={'Top Performers on Swift Cash'} subHeading={'Meet the best workers who consistently deliver exceptional results, setting benchmarks of excellence and reliability in their tasks.'} />
      <div className="grid  gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
       {
-        bestWorkers.map((worker) => <BestWorkerCard worker={worker} key={worker?._id}/>)
+        bestWorkers.map((worker) => <BestWorkerCard worker={worker} key={worker?._id}/>).slice(0,6)
       }
     </div>
    </div>
