@@ -18,9 +18,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/adminHome'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -32,9 +32,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/manage-users'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -46,9 +46,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/manage-tasks'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -69,9 +69,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/buyerHome'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -83,9 +83,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/add-tasks'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -97,9 +97,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/my-tasks'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -111,9 +111,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/purchase-coins'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -125,9 +125,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/payment-history'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -150,9 +150,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/workerHome'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -164,9 +164,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/workerTaskList'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -178,9 +178,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/workerSubmissions'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold "
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -192,9 +192,9 @@ const LeftSidebar = () => {
       <NavLink
       to={'/dashboard/workerWithdrawals'}
         className={({ isActive }) =>
-          ` transition-colors duration-300 flex items-center gap-2 w-fit ${
+          ` transition-colors duration-1000 flex items-center gap-2 w-fit ${
             isActive
-              ? "text-brand-primary font-semibold bg-surface px-2 py-1 rounded-lg"
+              ? "text-brand-primary font-semibold"
               : "text-white font-normal hover:text-brand-primary"
           }`
         }
@@ -217,7 +217,7 @@ const LeftSidebar = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="transition-all duration-300 ease-in-out text-white min-h-full w-80 px-8 py-10 space-y-8 shadow-md  bg-bg-main z-[1] ">
+        <ul className="transition-all duration-1000 ease-in-out text-white min-h-full w-80 px-8 lg:px-20 py-10 space-y-8 shadow-md  bg-bg-main z-[1] ">
           {/* Sidebar content here */}
           {sideBbarLinks}
         </ul>
